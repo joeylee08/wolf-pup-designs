@@ -1,4 +1,8 @@
 import './App.css'
+import macro1 from "./assets/images/macro1.png";
+import macro2 from "./assets/images/macro2.png";
+import macro3 from "./assets/images/macro3.png";
+import macro4 from "./assets/images/macro4.png";
 
 function App() {
 
@@ -11,7 +15,7 @@ function App() {
       </div>
       <div className='child1'>
         <div className='child1a'>
-          <p>Wolf Pup Designs will work with you to assess your business needs and custom design a modern and intuitive application tailored to your unique workflows.</p>
+          <p>Wolf Pup Designs will work with you to assess your business needs and design a custom application tailored to your unique workflows.</p>
           <br/>
           <p>Schedule a free 30-minute consultation today.</p>
         </div>
@@ -20,8 +24,11 @@ function App() {
           <p>01 / SELECTED WORK</p>
           <p>MACRO TRACKER</p>
           <br/>
-          <p>PROBLEM: Needed a way to track individual meals and calories, and to blah blah blah blah blah.</p>
-          <p>SOLUTION: Made a macro-tracking app that allows users to create custom meals based on their personal ingredient libraries..</p>
+          <p>PROBLEM: The need for an editable library of user-generated meals as well as a method of tracking daily macronutrient intake.</p>
+          <br/>
+          <p>SOLUTION: An intuitive application that dynamically calculates macronutrient totals from user-submitted meals and saves longitudinal, graphical data on the user's eating habits.</p>
+          <br/>
+          <button type='button' className='toCaseStudy'>DETAILED CASE STUDY</button>
         </div>
       </div>  
     </div>
