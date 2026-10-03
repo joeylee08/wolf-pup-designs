@@ -28,7 +28,8 @@ body {
   background-color: white;
   border: 1px solid #4A4A4A;
   border-radius: 8px;
-  padding-bottom: 1rem;
+  padding-top: 0.8rem;
+  padding-bottom: 3rem;
 }
 .linksList {
   display: flex;
@@ -60,7 +61,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 0;
 }
 .hero {
   width: 90%;

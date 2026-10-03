@@ -22,6 +22,10 @@ const Home = () => {
                 </div>
                 <div className='sectionModule'>
                     <p className='moduleHeading'>02 / DESIGN</p>
+                    <br/>
+                    <p>I translate those needs into a clear technical solution designed specifically around how your business operates.</p>
+                    <br/>
+                    <p>How will I structure this application to effectively address the challenges presented by your current infrastructure?</p>
                 </div>
                 <div className='sectionModule'>
                     <p className='moduleHeading'>03 / BUILD</p>
