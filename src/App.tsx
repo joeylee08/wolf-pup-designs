@@ -6,8 +6,6 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Error from "./pages/Error";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-
 
 function App() {
 	const routes = [
@@ -27,7 +25,6 @@ function App() {
 					<Routes>
 						{routes}
 					</Routes>
-				<Footer />
 			</div>
 		</BrowserRouter>
 	)

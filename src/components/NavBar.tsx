@@ -3,17 +3,15 @@ import { NavLink } from 'react-router-dom'
 const NavBar = () => {
 
   return (
-    <></>
-    // <nav className='navbar'>
-    //   <div className='navInner'>
-    //     <ul className='linksList'>
-    //       <li><NavLink to='/' className={({isActive}) => isActive ? 'selected' : null}><span>Today</span></NavLink></li>
-    //       <li><NavLink to='/menu' className={({isActive}) => isActive  ? 'selected' : null}><span>Menu</span></NavLink></li>
-    //       <li><NavLink to='/history' className={({isActive}) => isActive  ? 'selected' : null}><span>History</span></NavLink></li>
-    //       <li><NavLink to='/settings' className={({isActive}) => isActive  ? 'selected' : null}><span>Settings</span></NavLink></li>
-    //     </ul>
-    //   </div>
-    // </nav>
+    <nav className='navbar'>
+        <ul className='linksList'>
+          <li><NavLink to='/' className={({isActive}) => isActive ? 'selected' : ''}><span>Home</span></NavLink></li>
+          <li><NavLink to='/whatibuild' className={({isActive}) => isActive  ? 'selected' : ''}><span>What I Build</span></NavLink></li>
+          <li><NavLink to='/selectedwork' className={({isActive}) => isActive  ? 'selected' : ''}><span>Selected Work</span></NavLink></li>
+          <li><NavLink to='/aboutme' className={({isActive}) => isActive  ? 'selected' : ''}><span>About Me</span></NavLink></li>
+          <li><NavLink to='/contact' className={({isActive}) => isActive  ? 'selected' : ''}><span>Contact</span></NavLink></li>
+        </ul>
+    </nav>
   )
 }
 

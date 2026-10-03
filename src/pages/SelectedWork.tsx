@@ -1,4 +1,4 @@
-import macrothumb from "./assets/images/macrothumb.png";
+import macrothumb from "../assets/images/macrothumb.png";
 
 const SelectedWork = () => {
 
