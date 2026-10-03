@@ -97,20 +97,44 @@ p {
   font-weight: 450;
   color: #4a4a4a;
 }
-.child1 {
+.sectionHeading {
+  color: #4a4a4a;
+  width: 90%;
+  text-align: left;
+  font-size: 2rem;
+  margin: 0 auto 1rem auto;
+  font-weight: 400;
+}
+.subHeading {
+  font-size: 1.2rem;
+  font-weight: 550;
+  margin: 0;
+}
+.child {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
   width: 90%;
 }
 .child2 {
+  display: grid;
   width: 90%;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.moduleHeading {
+  font-size: 1.2rem;
+  color: #C30010;
+}
+.child2 .sectionModule {
+  width: 100%;
+  min-height: 12rem;
   border: 0.5px solid #4a4a4a;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
+  border-radius: 8px;
   padding: 1rem;
+}
+.child3 {
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .imageBox {
   width: 100%;
@@ -126,8 +150,7 @@ p {
   height: auto;
 }
 .child3 {
-  margin: 1rem 0;
-  width: 90%;
+  width: 85%;
 }
 .projectName {
   font-size: 1.4rem;
