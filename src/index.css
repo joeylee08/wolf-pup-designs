@@ -1,3 +1,7 @@
+/* White #FFFFFF
+Gray #4A4A4A
+Black #000000
+Red #C30010 */
 * {
   box-sizing: border-box;
 }
@@ -41,6 +45,9 @@ body {
   font-size: 1.1rem;
   font-weight: 450;
   color: #4A4A4A;
+}
+.linksList a.selected {
+  color: #C30010;
 }
 .linksList li:not(:last-child)::after {
     content: "|";
