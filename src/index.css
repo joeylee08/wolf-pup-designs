@@ -22,8 +22,8 @@ body {
   font-family: "Quicksand", sans-serif;
 }
 #app {
-  width: 90%;
-  height: 90%;
+  width: 85%;
+  height: 85%;
   margin: 3rem auto;
   background-color: white;
   border: 1px solid #4A4A4A;
@@ -35,15 +35,15 @@ body {
   display: flex;
   flex-direction: row;
   gap: 0.6rem;
-  width: 90%;
-  margin: 2rem auto 0.5rem auto;
+  width: 85%;
+  margin: 2rem auto 1rem auto;
   justify-content: flex-end;
   list-style: none;
   padding: 0;
 }
 .linksList a {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 450;
   color: #4A4A4A;
 }
@@ -63,12 +63,12 @@ body {
   justify-content: center;
 }
 .hero {
-  width: 90%;
+  width: 85%;
   background-color: inherit;
 }
 .logo {
-  width: 18rem;
-  height: 18rem;
+  width: 20rem;
+  height: 20rem;
   margin: 0.5rem auto 0 auto;
 }
 h1 {
@@ -87,7 +87,7 @@ h4 {
   font-size: 1.2rem;
   font-weight: 500;
   color: #4a4a4a;
-  width: 90%;
+  width: 85%;
   text-align: right;
   margin: 0 auto;
 }
@@ -97,13 +97,21 @@ p {
   font-weight: 450;
   color: #4a4a4a;
 }
+.pageHeading {
+  color: #4A4A4A;
+  width: 85%;
+  text-align: left;
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 0 0 1.2rem 0;
+}
 .sectionHeading {
   color: #4a4a4a;
-  width: 90%;
+  width: 85%;
   text-align: left;
   font-size: 2rem;
   margin: 0 auto 1rem auto;
-  font-weight: 400;
+  font-weight: 450;
 }
 .subHeading {
   font-size: 1.2rem;
@@ -112,49 +120,44 @@ p {
 }
 .child {
   display: flex;
-  width: 90%;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 85%;
 }
-.child2 {
+.home .child1 {
+  margin: 0;
+}
+.home .child2 {
   display: grid;
-  width: 90%;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 2.4rem;
+}
+.sectionModule {
+  width: 100%;
+  min-height: 10rem;
+  border: 0.5px solid #4a4a4a;
+  border-radius: 8px;
+  padding: 1.2rem;
 }
 .moduleHeading {
   font-size: 1.2rem;
   color: #C30010;
 }
-.child2 .sectionModule {
-  width: 100%;
-  min-height: 12rem;
-  border: 0.5px solid #4a4a4a;
-  border-radius: 8px;
-  padding: 1.2rem;
+.home .child3 {
+  width: 80%;
+  
 }
-.child3 {
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.imageBox {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-content: center;
-  background-color: #4A4A4A;
-}
-.imageThumb {
-  margin: 1rem 0;
-  width: 90%;
-  height: auto;
-}
-.child3 {
+.whatIBuild .child1 {
   width: 85%;
+  margin: 0.5rem 0 2.5rem 0;
 }
-.projectName {
-  font-size: 1.4rem;
-  font-weight: 400;
+.whatIBuild .child2 {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2.4rem;
 }
 .pageBtn {
   width: 14rem;

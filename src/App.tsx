@@ -11,10 +11,10 @@ function App() {
 	const routes = [
 		(<>
 			<Route path='/' element={<Home />} />
-			<Route path='/menu' element={<WhatIBuild />} />
-			<Route path='/history' element={<SelectedWork />} />
-			<Route path='/settings' element={<About />} />
-			<Route path="/login" element={<Contact />} />
+			<Route path='/whatibuild' element={<WhatIBuild />} />
+			<Route path='/selectedwork' element={<SelectedWork />} />
+			<Route path='/aboutme' element={<About />} />
+			<Route path="/contact" element={<Contact />} />
 			<Route path="*" element={<Error />} />
 		</>)
 	]
