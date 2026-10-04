@@ -2,7 +2,7 @@ const WhatIBuild = () => {
 
     return (
         <div className='mainPage whatIBuild'>
-            <h2 className='pageHeading'>What I Build</h2>
+            <h2 className='sectionHeading'>What I Build</h2>
             <div className='child child1'>
                 <p>Your business shouldn't have to reshape its workflow around generic software.</p>
                 <br/>
@@ -30,8 +30,53 @@ const WhatIBuild = () => {
                     <p>A system for organizations to accept and track donations, maintain donor records, monitor fundraising goals, and give authorized staff access to financial metrics.</p>
                 </div>
             </div>
-            <div className='child3 whatIBuild'>
-                PENIS: Origins
+            <h2 className='sectionHeading'>Technologies and Capabilities</h2>
+            <div className='child child3'>
+                <div className='techThumb'>
+                    <p>React</p>
+                </div>
+                <div className='techThumb'>
+                    <p>TypeScript</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Node.js</p>
+                </div>
+                <div className='techThumb'>
+                    <p>PostgreSQL</p>
+                </div>
+            </div>
+            <hr className='dividerLine'></hr>
+            <div className='child child4'>
+                <div className='techThumb'>
+                    <p>Authentication</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Authorization</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Payments</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Database Design</p>
+                </div>
+                <div className='techThumb'>
+                    <p>REST APIs</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Integrations</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Role-Based Access</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Security</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Deployment</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Mobile Friendly</p>
+                </div>
             </div>
         </div>
     )

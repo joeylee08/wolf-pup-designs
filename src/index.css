@@ -97,14 +97,6 @@ p {
   font-weight: 450;
   color: #4a4a4a;
 }
-.pageHeading {
-  color: #4A4A4A;
-  width: 85%;
-  text-align: left;
-  font-size: 3rem;
-  font-weight: 400;
-  margin: 0 0 1.2rem 0;
-}
 .sectionHeading {
   color: #4a4a4a;
   width: 85%;
@@ -158,6 +150,39 @@ p {
   grid-template-columns: 1fr;
   gap: 1rem;
   margin-bottom: 2.4rem;
+}
+.whatIBuild .child3 {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+.whatIBuild .child4 {
+  /* border: 2px solid red; */
+  display: grid;
+  grid-template-columns: repeat(4, 11rem);
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0 2rem 0;
+}
+.techThumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 11rem;
+  height: 3.5rem;
+  border: 0.5px solid #C30010;
+  border-radius: 8px;
+}
+.dividerLine {
+  margin: 0 auto;
+  border-top: 0.5px solid #4A4A4A;
+  width: 75%;
 }
 .pageBtn {
   width: 14rem;
