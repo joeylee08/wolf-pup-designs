@@ -59,6 +59,12 @@ const WhatIBuild = () => {
                     <p>Payments</p>
                 </div>
                 <div className='techThumb'>
+                    <p>Data Visualization</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Role-Based Access</p>
+                </div>
+                <div className='techThumb'>
                     <p>Database Design</p>
                 </div>
                 <div className='techThumb'>
@@ -68,19 +74,16 @@ const WhatIBuild = () => {
                     <p>Integrations</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Role-Based Access</p>
+                    <p>Security</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Security</p>
+                    <p>Invasive Testing</p>
                 </div>
                 <div className='techThumb'>
                     <p>Deployment</p>
                 </div>
                 <div className='techThumb'>
                     <p>Mobile Friendly</p>
-                </div>
-                <div className='techThumb'>
-                    <p>Invasive Testing</p>
                 </div>
             </div>
             <h2 className='sectionHeading'>Built to Last</h2>
