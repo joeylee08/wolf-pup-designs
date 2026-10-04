@@ -1,3 +1,5 @@
+import madetolast from "../assets/images/madetolast.png";
+
 const WhatIBuild = () => {
 
     return (
@@ -84,12 +86,19 @@ const WhatIBuild = () => {
             <h2 className='sectionHeading'>Built to Last</h2>
             <div className='child child5'>
                 <div className='child5a'>
-                    <p>Your business shouldn't have to reshape its workflow around generic software.</p>
+                    <p>A working application is only the beginning.</p>
                     <br/>
-                    <p>I build web applications</p>
+                    <p> I build with maintainability in mind, using clear structure and predictable patterns so the software can be understood, debugged, and extended as your needs change.</p>
+                    <br/>
+                    <p>I will always remain accountable for the code I write, and available for future maintenance, troubleshooting, and development.</p>
+                    <br/>
+                    <p className='moduleHeading'>01 / CLEAR STRUCTURE</p>
+                    <p className='moduleHeading'>02 / MAINTAINABILITY</p>
+                    <p className='moduleHeading'>03 / SECURITY</p>
+                    <p className='moduleHeading'>04 / EXTENSIBILITY</p>
                 </div>
                 <div className='child5b'>
-                    
+                    <img className='vsCodeImg' src={madetolast} alt='VS Code Screenshot'></img>
                 </div>
                 
             </div>
