@@ -88,13 +88,18 @@ const WhatIBuild = () => {
                 <div className='child5a'>
                     <p>A working application is only the beginning.</p>
                     <br/>
-                    <p> I build with maintainability in mind, using clear structure and predictable patterns so the software can be understood, debugged, and extended as your needs change.</p>
+                    <p> I build with maintainability in mind, using clear structure and predictable patterns so the software can be understood, debugged, and expanded as your needs change.</p>
                     <br/>
                     <p>I will always remain accountable for the code I write, and available for future maintenance, troubleshooting, and development.</p>
                     <br/>
+                    <hr/>
+                    <br/>
                     <p className='moduleHeading'>01 / CLEAR STRUCTURE</p>
+                    <br/>
                     <p className='moduleHeading'>02 / MAINTAINABILITY</p>
+                    <br/>
                     <p className='moduleHeading'>03 / SECURITY</p>
+                    <br/>
                     <p className='moduleHeading'>04 / EXTENSIBILITY</p>
                 </div>
                 <div className='child5b'>
