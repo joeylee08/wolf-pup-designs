@@ -77,6 +77,21 @@ const WhatIBuild = () => {
                 <div className='techThumb'>
                     <p>Mobile Friendly</p>
                 </div>
+                <div className='techThumb'>
+                    <p>Invasive Testing</p>
+                </div>
+            </div>
+            <h2 className='sectionHeading'>Built to Last</h2>
+            <div className='child child5'>
+                <div className='child5a'>
+                    <p>Your business shouldn't have to reshape its workflow around generic software.</p>
+                    <br/>
+                    <p>I build web applications</p>
+                </div>
+                <div className='child5b'>
+                    
+                </div>
+                
             </div>
         </div>
     )
