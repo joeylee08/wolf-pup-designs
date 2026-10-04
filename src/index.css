@@ -5,6 +5,9 @@ Red #C30010 */
 * {
   box-sizing: border-box;
 }
+html {
+  font-size: 90%;
+}
 html,
 body,
 #root {
@@ -26,10 +29,12 @@ body {
   height: 85%;
   margin: 3rem auto;
   background-color: white;
-  border: 1px solid #4A4A4A;
-  border-radius: 8px;
+  border: 0.06rem solid #4A4A4A;
+  border-radius: 0.5rem;
   padding-top: 0.8rem;
   padding-bottom: 3rem;
+  min-width: 62rem;
+  max-width: 62rem;
 }
 .linksList {
   display: flex;
@@ -128,8 +133,8 @@ p {
 .sectionModule {
   width: 100%;
   min-height: 10rem;
-  border: 0.5px solid #4a4a4a;
-  border-radius: 8px;
+  border: 0.03rem solid #4a4a4a;
+  border-radius: 0.5rem;
   padding: 1.2rem;
 }
 .moduleHeading {
@@ -150,7 +155,7 @@ p {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 .whatIBuild .child3 {
   display: flex;
@@ -166,7 +171,7 @@ p {
   justify-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem 0 3rem 0;
+  margin: 2rem 0 2.5rem 0;
 }
 .whatIBuild .child5 {
   margin: 0.5rem 0 1rem 0;
@@ -183,8 +188,8 @@ p {
 .vsCodeImg {
   width: 100%;
   height: auto;
-  border: 0.5px solid #C30010;
-  border-radius: 8px;
+  border: 0.03rem solid #C30010;
+  border-radius: 0.5rem;
 }
 .techThumb {
   display: flex;
@@ -193,20 +198,20 @@ p {
   justify-content: center;
   min-width: 11rem;
   height: 3.5rem;
-  border: 0.5px solid #C30010;
-  border-radius: 8px;
+  border: 0.03rem solid #C30010;
+  border-radius: 0.5rem;
 }
 .dividerLine {
   margin: 0 auto;
-  border-top: 0.5px solid #4A4A4A;
+  border-top: 0.03rem solid #4A4A4A;
   width: 75%;
 }
 .pageBtn {
   width: 14rem;
   height: 2.7rem;
   background-color: white;
-  border: 0.5px solid #4a4a4a;
-  border-radius: 5px;
+  border: 0.03rem solid #4a4a4a;
+  border-radius: 0.31rem;
   font-weight: 400;
   font-size: 1rem;
 }
