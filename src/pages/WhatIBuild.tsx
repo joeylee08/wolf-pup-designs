@@ -93,17 +93,19 @@ const WhatIBuild = () => {
                     <br/>
                     <p> I build with maintainability in mind, using clear structure and predictable patterns so the software can be understood, debugged, and expanded as your needs change.</p>
                     <br/>
-                    <p>I will always remain accountable for the code I write, and available for future maintenance, troubleshooting, and development.</p>
+                    <p>I will always remain accountable for the code I write and available for future maintenance, troubleshooting, and development.</p>
                     <br/>
                     <hr/>
                     <br/>
-                    <p className='moduleHeading'>01 / CLEAR STRUCTURE</p>
+                    <p className='moduleHeading'>01 / STRUCTURE</p>
                     <br/>
-                    <p className='moduleHeading'>02 / MAINTAINABILITY</p>
+                    <p className='moduleHeading'>02 / READABILITY</p>
                     <br/>
                     <p className='moduleHeading'>03 / SECURITY</p>
                     <br/>
-                    <p className='moduleHeading'>04 / EXTENSIBILITY</p>
+                    <p className='moduleHeading'>04 / MODULARITY</p>
+                    <br/>
+                    <p className='moduleHeading'>05 / EXTENSIBILITY</p>
                 </div>
                 <div className='child5b'>
                     <img className='vsCodeImg' src={madetolast} alt='VS Code Screenshot'></img>

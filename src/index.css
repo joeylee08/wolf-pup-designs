@@ -183,8 +183,8 @@ p {
 .vsCodeImg {
   width: 100%;
   height: auto;
-  border: 0.5px solid #4A4A4A;
-  /* border-radius: 8px; */
+  border: 0.5px solid #C30010;
+  border-radius: 8px;
 }
 .techThumb {
   display: flex;
