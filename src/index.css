@@ -138,6 +138,7 @@ p {
 }
 .home .child3 {
   width: 80%;
+  margin-bottom: 1rem;
   
 }
 .whatIBuild .child1 {
@@ -168,7 +169,7 @@ p {
   margin: 2rem 0 3rem 0;
 }
 .whatIBuild .child5 {
-  margin: 0.5rem 0 2rem 0;
+  margin: 0.5rem 0 1rem 0;
   display: flex;
   flex-direction: row;
 }
