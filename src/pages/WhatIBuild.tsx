@@ -77,7 +77,7 @@ const WhatIBuild = () => {
                     <p>Security</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Invasive Testing</p>
+                    <p>SEO</p>
                 </div>
                 <div className='techThumb'>
                     <p>Deployment</p>
@@ -101,11 +101,9 @@ const WhatIBuild = () => {
                     <br/>
                     <p className='moduleHeading'>02 / READABILITY</p>
                     <br/>
-                    <p className='moduleHeading'>03 / SECURITY</p>
+                    <p className='moduleHeading'>03 / MODULARITY</p>
                     <br/>
-                    <p className='moduleHeading'>04 / MODULARITY</p>
-                    <br/>
-                    <p className='moduleHeading'>05 / EXTENSIBILITY</p>
+                    <p className='moduleHeading'>04 / EXTENSIBILITY</p>
                 </div>
                 <div className='child5b'>
                     <img className='vsCodeImg' src={madetolast} alt='VS Code Screenshot'></img>
