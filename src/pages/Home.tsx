@@ -6,7 +6,7 @@ const Home = () => {
         <div className='mainPage home'>
             <div className='hero'>
                 <h1>WOLF PUP DESIGNS</h1>
-                <h3>Custom made solutions for every business.</h3>
+                <h3>Custom software built around your business.</h3>
             </div>
             <div className='child child1'>
                 <img className='logo' src={wolfpuplogo} alt='Wolf Pup Designs Logo'></img>

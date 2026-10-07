@@ -46,9 +46,6 @@ const WhatIBuild = () => {
                 <div className='techThumb'>
                     <p>PostgreSQL</p>
                 </div>
-            </div>
-            <hr className='dividerLine'></hr>
-            <div className='child child4'>
                 <div className='techThumb'>
                     <p>Authentication</p>
                 </div>
@@ -56,22 +53,28 @@ const WhatIBuild = () => {
                     <p>Authorization</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Payments</p>
+                    <p>Database Design</p>
                 </div>
                 <div className='techThumb'>
                     <p>Data Visualization</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Role-Based Access</p>
+                    <p>Deployment</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Database Design</p>
+                    <p>Integrations</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Mobile Friendly</p>
+                </div>
+                <div className='techThumb'>
+                    <p>Payments</p>
                 </div>
                 <div className='techThumb'>
                     <p>REST APIs</p>
                 </div>
                 <div className='techThumb'>
-                    <p>Integrations</p>
+                    <p>Role-Based Access</p>
                 </div>
                 <div className='techThumb'>
                     <p>Security</p>
@@ -79,23 +82,17 @@ const WhatIBuild = () => {
                 <div className='techThumb'>
                     <p>SEO</p>
                 </div>
-                <div className='techThumb'>
-                    <p>Deployment</p>
-                </div>
-                <div className='techThumb'>
-                    <p>Mobile Friendly</p>
-                </div>
             </div>
             <h2 className='sectionHeading'>Built to Last</h2>
-            <div className='child child5'>
-                <div className='child5a'>
+            <div className='child child4'>
+                <div className='child4a'>
                     <p>A working application is only the beginning.</p>
                     <br/>
                     <p> I build with maintainability in mind, using clear structure and predictable patterns so the software can be understood, debugged, and expanded as your needs change.</p>
                     <br/>
                     <p>I will always remain accountable for the code I write and available for future maintenance and development.</p>
                     <br/>
-                    <hr/>
+                    <hr className='dividerLine'/>
                     <br/>
                     <p className='moduleHeading'>01 / STRUCTURE</p>
                     <br/>
@@ -105,7 +102,7 @@ const WhatIBuild = () => {
                     <br/>
                     <p className='moduleHeading'>04 / EXTENSIBILITY</p>
                 </div>
-                <div className='child5b'>
+                <div className='child4b'>
                     <img className='vsCodeImg' src={madetolast} alt='VS Code Screenshot'></img>
                 </div>
                 
