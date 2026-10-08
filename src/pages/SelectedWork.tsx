@@ -34,7 +34,7 @@ const SelectedWork = () => {
             </div>
             <div className='child child3'>
                 <div className='sectionModule'>
-                    <p className='moduleHeading'>03 / ALL NATIONS MISSION FOR CHRIST</p>
+                    <p className='moduleHeading'>03 / ALL NATIONS MFC</p>
                     <br/>
                     <p>PROBLEM: A Christian NPO needed a web application to establish an online presence, share their mission with the world, and manage one-time as well as ongoing donations.</p>
                     <br/>

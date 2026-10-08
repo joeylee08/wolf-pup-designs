@@ -222,6 +222,30 @@ p {
   width: 100%;
   margin: 0 auto;
 }
+.aboutThumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3rem;
+  border: 0.03rem solid #C30010;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  color: #C30010;
+}
+.aboutText {
+  margin: 0.5rem auto;
+  width: 100%;
+}
+.hobbyIcons {
+  margin: 1rem auto;
+  width: 80%;
+}
+.aboutMe .child {
+  width: 80%;
+  margin: 0.5rem auto 2.5rem auto;
+}
 .pageBtn {
   width: 14rem;
   height: 2.7rem;
