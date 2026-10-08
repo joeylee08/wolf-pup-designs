@@ -9,7 +9,7 @@ const About = () => {
                 <div className='aboutThumb'>01 / WHO I AM</div>
                 <br/>
                 <div className='aboutText'>
-                    <p>My name is Joseph. I am an independent web developer and founder of Wolf Pup Designs.</p>
+                    <p>My name is Joseph. I am an independent web developer and the founder of Wolf Pup Designs.</p>
                     <br/>
                     <p>I specialize in building custom web applications for organizations whose needs aren't adequately served by off-the-shelf software.</p>
                     <br/>
@@ -37,7 +37,7 @@ const About = () => {
                     <br/>
                     <p>I eventually came to realize that parts of myself I thought I'd lost were still there.</p>
                     <br/>
-                    <p>To me, the little wolf pup represents our capacity to remain playful, curious, and creative, and to keep moving forward, even when Life gives us every reason to quit.</p>
+                    <p>To me, the little wolf pup represents our capacity to remain playful, curious, and creative, and to keep moving forward, even when Life gives us every reason to give up.</p>
                 </div>
             </div>
         </div>
