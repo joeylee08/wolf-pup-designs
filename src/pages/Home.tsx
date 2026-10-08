@@ -30,16 +30,16 @@ const Home = () => {
                 <div className='sectionModule'>
                     <p className='moduleHeading'>03 / BUILD</p>
                     <br/>
-                    <p>I personally develop your application from the ground up, placing an emphasis on clear and organized code, multi-layer security, user-friendliness, and long-term maintainability.</p>
+                    <p>I personally build your application from the ground up, placing an emphasis on clean code, security, user-friendliness, and maintainability.</p>
                     <br/>
                     <p>I understand and remain accountable for every line of code I write, allowing me to confidently maintain, troubleshoot, and modify your application as the need arises.</p>
                 </div>
                 <div className='sectionModule'>
                     <p className='moduleHeading'>04 / REFINE</p>
                     <br/>
-                    <p>Real software evolves. We test the application against real-world users, refine what isn't working, and leave room for the system to grow as your needs change.</p>
+                    <p>Real software evolves. We thoroughly test the application, refine what isn't working, and leave room for the system to grow as your needs change.</p>
                     <br/>
-                    <p>Our relationship doesn't end once the product ships. I remain reachable for ongoing support, maintenance, and future development as your business expands and evolves.</p>
+                    <p>Our relationship doesn't end once the product ships. I remain reachable for ongoing support and future development as your business expands and evolves.</p>
                 </div>
             </div>
             <div className='child child3'>
