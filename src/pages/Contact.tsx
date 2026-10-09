@@ -2,10 +2,10 @@ import wolfpuplogo from "../assets/images/wolfpuplogo.png";
 import { useState } from "react"
 
 const Contact = () => {
-    const [appointmentData, setAppointmentData] = useState({name: '', email: '', appointment: ''})
+    const [appointmentData, setAppointmentData] = useState({name: '', email: '', appointment: '', message: ''})
     const [messageData, setMessageData] = useState({name: '', email: '', message: ''})
 
-    const handleSetAppointmentData = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleSetAppointmentData = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target
         setAppointmentData(previous => ({
             ...previous,
@@ -46,6 +46,9 @@ const Contact = () => {
                         <select id='appointment' name='appointment' value={appointmentData.appointment} onChange={handleSetAppointmentData} required>
                             <option value='' disabled>Select One</option>
                         </select>
+                        <label htmlFor='appointmentMessage'>Notes [Optional]: </label>
+                        <textarea id='appointmentMessage' name='message' rows={6} placeholder='Anything you would like me to know?' value={appointmentData.message} onChange={handleSetAppointmentData}></textarea>
+                        <br/>
                         <button type='submit' className='pageBtn'>SEND REQUEST</button>
                     </form>
                 </div>
@@ -61,8 +64,8 @@ const Contact = () => {
                         <input type='text' id='messageName' name='name' value={messageData.name} onChange={handleSetMessageData} required></input>
                         <label htmlFor='messageEmail'>Email: </label>
                         <input type='email' id='messageEmail' name='email' value={messageData.email} onChange={handleSetMessageData} required></input>
-                        <label htmlFor='message'>Your Message: </label>
-                        <textarea id='message' name='message' rows={8} placeholder='Tell me about your project...' value={messageData.message} onChange={handleSetMessageData} required></textarea>
+                        <label htmlFor='messageNotes'>Your Message: </label>
+                        <textarea id='messageNotes' name='message' rows={6} placeholder='Tell me about your project.' value={messageData.message} onChange={handleSetMessageData} required></textarea>
                         <br/>
                         <button type='submit' className='pageBtn'>SEND MESSAGE</button>
                     </form>
