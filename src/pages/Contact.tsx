@@ -38,12 +38,12 @@ const Contact = () => {
                     <p>Schedule a free 30-minute consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
                     <br/>
                     <form onSubmit={handleRequestAppointment}>
-                        <label htmlFor='name'>Name: </label>
-                        <input type='text' id='name' name='name' value={appointmentData.name} onChange={handleSetAppointmentData}></input>
-                        <label htmlFor='email'>Email: </label>
-                        <input type='email' id='email' name='email' value={appointmentData.email} onChange={handleSetAppointmentData}></input>
-                        <label htmlFor='appointment'>Select Appointment [Pacific Standard Time]: </label>
-                        <select id='appointment' name='appointment' required value={appointmentData.appointment} onChange={handleSetAppointmentData}>
+                        <label htmlFor='appointmentName'>Name: </label>
+                        <input type='text' id='appointmentName' name='name' value={appointmentData.name} onChange={handleSetAppointmentData} required></input>
+                        <label htmlFor='appointmentEmail'>Email: </label>
+                        <input type='email' id='appointmentEmail' name='email' value={appointmentData.email} onChange={handleSetAppointmentData} required></input>
+                        <label htmlFor='appointment'>Select Appointment [Pacific Time PT]: </label>
+                        <select id='appointment' name='appointment' value={appointmentData.appointment} onChange={handleSetAppointmentData} required>
                             <option value='' disabled>Select One</option>
                         </select>
                         <button type='submit' className='pageBtn'>SEND REQUEST</button>
@@ -57,12 +57,12 @@ const Contact = () => {
                     <p>Prefer to start with an email? No problem. Tell me a little about your project, and we can take it from there.</p>
                     <br/>
                     <form onSubmit={handleSendMessage}>
-                        <label htmlFor='name'>Name: </label>
-                        <input type='text' id='name' name='name' value={messageData.name} onChange={handleSetMessageData}></input>
-                        <label htmlFor='email'>Email: </label>
-                        <input type='email' id='email' name='email' value={messageData.email} onChange={handleSetMessageData}></input>
+                        <label htmlFor='messageName'>Name: </label>
+                        <input type='text' id='messageName' name='name' value={messageData.name} onChange={handleSetMessageData} required></input>
+                        <label htmlFor='messageEmail'>Email: </label>
+                        <input type='email' id='messageEmail' name='email' value={messageData.email} onChange={handleSetMessageData} required></input>
                         <label htmlFor='message'>Your Message: </label>
-                        <textarea id='message' name='message' rows={8} placeholder='Tell me about your project...' required value={messageData.message} onChange={handleSetMessageData}></textarea>
+                        <textarea id='message' name='message' rows={8} placeholder='Tell me about your project...' value={messageData.message} onChange={handleSetMessageData} required></textarea>
                         <br/>
                         <button type='submit' className='pageBtn'>SEND MESSAGE</button>
                     </form>
