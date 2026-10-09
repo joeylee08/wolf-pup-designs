@@ -305,3 +305,23 @@ form > textarea {
   background: #4a4a4a;
   color: white;
 }
+.mainPage .admin {
+  padding-top: 5rem;
+}
+.admin .child {
+  margin: 2.5rem auto 1.5rem auto;
+  height: 28rem;
+  width: 50%;
+  border: 0.03rem solid #C30010;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+.admin input {
+  width: 100%;
+  height: 1.6rem;
+  padding-left: 0.25rem;
+}
