@@ -12,7 +12,7 @@ const Contact = () => {
             <h2 className='sectionHeading'>Contact Us</h2>
             <div className='child child1'>
                 <div className='sectionModule'>
-                    <p className='moduleHeading'>01 / SCHEDULE A FREE CONSULTATION</p>
+                    <p className='moduleHeading'>01 / REQUEST A FREE CONSULTATION</p>
                     <br/>
                     <p>Schedule a free 30-minute consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
                     <br/>
@@ -25,7 +25,7 @@ const Contact = () => {
                         <select id='appointment' name='appointment' defaultValue='' required>
                             <option value='' disabled>Select One</option>
                         </select>
-                        <button type='button' className='pageBtn'>CONFIRM</button>
+                        <button type='button' className='pageBtn'>SEND REQUEST</button>
                     </form>
                 </div>
                 <br/>
