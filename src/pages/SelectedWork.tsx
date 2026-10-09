@@ -5,7 +5,7 @@ const SelectedWork = () => {
 
     return (
         <div className='mainPage selectedWork'>
-            <h2 className='sectionHeading'>Selected Work</h2>
+            <h2 className='sectionHeading'>Selected Projects</h2>
             <div className='child child1'>
                 <div className='sectionModule'>
                     <p className='moduleHeading'>01 / MACRO TRACKER</p>
@@ -19,7 +19,7 @@ const SelectedWork = () => {
                     <a className='pageBtn' href="https://macrotracker.wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">Macro Tracker</a>
                 </div>
             </div>
-            <div className='child child2'>
+            {/* <div className='child child2'>
                 <div className='sectionModule'>
                     <p className='moduleHeading'>02 / SEED OF AWAKENING MARTIAL ARTS</p>
                     <br/>
@@ -31,10 +31,10 @@ const SelectedWork = () => {
                     <br/>
                     <a className='pageBtn' href="https://wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">SoA Martial Arts</a>
                 </div>
-            </div>
+            </div> */}
             <div className='child child3'>
                 <div className='sectionModule'>
-                    <p className='moduleHeading'>03 / ALL NATIONS MFC</p>
+                    <p className='moduleHeading'>02 / ALL NATIONS MFC</p>
                     <br/>
                     <p>PROBLEM: A Christian NPO needed a web application to establish an online presence, share their mission with the world, and manage one-time as well as ongoing donations.</p>
                     <br/>
