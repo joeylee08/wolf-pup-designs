@@ -78,6 +78,11 @@ body {
   height: 20rem;
   margin: 0.5rem auto 0 auto;
 }
+.logoSmall {
+  width: 17rem;
+  height: 17rem;
+  margin: 0 auto;
+}
 h1 {
   font-size: 4.8rem;
   font-weight: 400;
@@ -247,6 +252,38 @@ p {
 .aboutMe .child {
   width: 80%;
   margin: 0.5rem auto 2.5rem auto;
+}
+.contact .child {
+  width: 70%;
+  margin: 0.5rem auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+form > label {
+  margin-bottom: 0.15rem;
+}
+form > input,
+form > select {
+  margin-bottom: 0.8rem;
+  height: 1.6rem;
+  border: 0.03rem solid #4a4a4a;
+  border-radius: 0.2rem;
+  width: 60%;
+  padding-left: 0.25rem;
+}
+form > select {
+  height: 1.75rem;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+form > textarea {
+  border: 0.03rem solid #4a4a4a;
+  border-radius: 0.2rem;
+  padding: 0.25rem;
+  max-width: 85%;
+  margin-bottom: 0.7rem;
 }
 .pageBtn {
   width: 14rem;
