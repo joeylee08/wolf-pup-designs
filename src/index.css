@@ -254,7 +254,7 @@ p {
   margin: 0.5rem auto 2.5rem auto;
 }
 .contact .child {
-  width: 70%;
+  width: 75%;
   margin: 0.5rem auto;
 }
 form {
@@ -270,7 +270,7 @@ form > select {
   height: 1.6rem;
   border: 0.03rem solid #4a4a4a;
   border-radius: 0.2rem;
-  width: 60%;
+  width: 50%;
   padding-left: 0.25rem;
 }
 form > select {
