@@ -3,7 +3,8 @@ import wolfpuplogo from '../assets/images/wolfpuplogo.png'
 
 const Admin = () => {
     const [adminPass, setAdminPass] = useState({ password: ''})
-    const [isActive, setIsActive] = useState(false)
+    //setter commented out for demo deployment
+    const [isActive] = useState(false)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAdminPass(previous => ({

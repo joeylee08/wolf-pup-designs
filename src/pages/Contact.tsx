@@ -1,5 +1,5 @@
 import wolfpuplogo from "../assets/images/wolfpuplogo.png";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 const Contact = () => {
     type AppointmentSlot = {
@@ -7,7 +7,8 @@ const Contact = () => {
         label: string;
     };
 
-    const [availableSlots, setAvailableSlots] = useState<AppointmentSlot[]>([]);
+    //setter commented out for demo deployment
+    const [availableSlots] = useState<AppointmentSlot[]>([]);
 
     // useEffect(() => {
     //     function fetchAppointments() {
