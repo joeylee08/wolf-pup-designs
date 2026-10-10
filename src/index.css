@@ -36,6 +36,10 @@ body {
   padding-bottom: 2rem;
   min-width: 64rem;
   max-width: 64rem;
+
+  min-height: calc(100dvh - 1.5rem);
+  margin: 1.5rem auto;
+  box-sizing: border-box;
 }
 .linksList {
   display: flex;
