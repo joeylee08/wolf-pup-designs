@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import { prisma } from "./db.js";
 import { transporter } from "./mail.js";
+import { generateAppointmentSlots } from "./appointments.js";
 
 const app = express();
 const PORT = 3001;
@@ -24,9 +25,7 @@ app.post("/api/messages", async (req, res) => {
     !email.trim() ||
     !message.trim()
   ) {
-    return res.status(400).json({
-      error: "Name, email, and message are required.",
-    });
+    return res.status(400).json({ error: "Name, email, and message are required." });
   }
 
   try {
@@ -51,11 +50,8 @@ app.post("/api/messages", async (req, res) => {
             message.trim(),
             ].join("\n"),
         });
-        } catch (error) {
-        console.error(
-            `Email notification failed for message ${savedMessage.id}:`,
-            error
-        );
+    } catch(error) {
+        console.error(`Email notification failed for message ${savedMessage.id}:`, error);
     }
     return res.status(201).json({
       success: true,
@@ -67,6 +63,26 @@ app.post("/api/messages", async (req, res) => {
     return res.status(500).json({
       error: "Unable to save message.",
     });
+  }
+});
+
+app.get("/api/appointments", async (req, res) => {
+  try {
+    const slots = generateAppointmentSlots();
+
+    const bookedAppointments = await prisma.appointment.findMany({
+        where: { status: "BOOKED" },
+        select: { appointmentSlot: true },
+    });
+    const bookedTimes = new Set(bookedAppointments.map((appointment) => appointment.appointmentSlot));
+
+    const availableSlots = slots.filter((slot) => !bookedTimes.has(slot.id));
+
+    res.status(200).json(availableSlots);
+  } catch(error) {
+    console.error("Failed to fetch available appointments:", error);
+
+    res.status(500).json({ error: "Unable to fetch available appointments." });
   }
 });
 

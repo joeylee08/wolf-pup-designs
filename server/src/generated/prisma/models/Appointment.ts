@@ -40,7 +40,7 @@ export type AppointmentMinAggregateOutputType = {
   email: string | null
   message: string | null
   dateAndTime: Date | null
-  appointmentSlot: Date | null
+  appointmentSlot: string | null
   status: $Enums.AppointmentStatus | null
 }
 
@@ -50,7 +50,7 @@ export type AppointmentMaxAggregateOutputType = {
   email: string | null
   message: string | null
   dateAndTime: Date | null
-  appointmentSlot: Date | null
+  appointmentSlot: string | null
   status: $Enums.AppointmentStatus | null
 }
 
@@ -197,7 +197,7 @@ export type AppointmentGroupByOutputType = {
   email: string
   message: string | null
   dateAndTime: Date
-  appointmentSlot: Date
+  appointmentSlot: string
   status: $Enums.AppointmentStatus
   _count: AppointmentCountAggregateOutputType | null
   _avg: AppointmentAvgAggregateOutputType | null
@@ -230,7 +230,7 @@ export type AppointmentWhereInput = {
   email?: Prisma.StringFilter<"Appointment"> | string
   message?: Prisma.StringNullableFilter<"Appointment"> | string | null
   dateAndTime?: Prisma.DateTimeFilter<"Appointment"> | Date | string
-  appointmentSlot?: Prisma.DateTimeFilter<"Appointment"> | Date | string
+  appointmentSlot?: Prisma.StringFilter<"Appointment"> | string
   status?: Prisma.EnumAppointmentStatusFilter<"Appointment"> | $Enums.AppointmentStatus
 }
 
@@ -246,6 +246,7 @@ export type AppointmentOrderByWithRelationInput = {
 
 export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  appointmentSlot?: string
   AND?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
   OR?: Prisma.AppointmentWhereInput[]
   NOT?: Prisma.AppointmentWhereInput | Prisma.AppointmentWhereInput[]
@@ -253,9 +254,8 @@ export type AppointmentWhereUniqueInput = Prisma.AtLeast<{
   email?: Prisma.StringFilter<"Appointment"> | string
   message?: Prisma.StringNullableFilter<"Appointment"> | string | null
   dateAndTime?: Prisma.DateTimeFilter<"Appointment"> | Date | string
-  appointmentSlot?: Prisma.DateTimeFilter<"Appointment"> | Date | string
   status?: Prisma.EnumAppointmentStatusFilter<"Appointment"> | $Enums.AppointmentStatus
-}, "id">
+}, "id" | "appointmentSlot">
 
 export type AppointmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -281,7 +281,7 @@ export type AppointmentScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   message?: Prisma.StringNullableWithAggregatesFilter<"Appointment"> | string | null
   dateAndTime?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
-  appointmentSlot?: Prisma.DateTimeWithAggregatesFilter<"Appointment"> | Date | string
+  appointmentSlot?: Prisma.StringWithAggregatesFilter<"Appointment"> | string
   status?: Prisma.EnumAppointmentStatusWithAggregatesFilter<"Appointment"> | $Enums.AppointmentStatus
 }
 
@@ -290,7 +290,7 @@ export type AppointmentCreateInput = {
   email: string
   message?: string | null
   dateAndTime?: Date | string
-  appointmentSlot: Date | string
+  appointmentSlot: string
   status?: $Enums.AppointmentStatus
 }
 
@@ -300,7 +300,7 @@ export type AppointmentUncheckedCreateInput = {
   email: string
   message?: string | null
   dateAndTime?: Date | string
-  appointmentSlot: Date | string
+  appointmentSlot: string
   status?: $Enums.AppointmentStatus
 }
 
@@ -309,7 +309,7 @@ export type AppointmentUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAndTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentSlot?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appointmentSlot?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
 }
 
@@ -319,7 +319,7 @@ export type AppointmentUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAndTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentSlot?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appointmentSlot?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
 }
 
@@ -329,7 +329,7 @@ export type AppointmentCreateManyInput = {
   email: string
   message?: string | null
   dateAndTime?: Date | string
-  appointmentSlot: Date | string
+  appointmentSlot: string
   status?: $Enums.AppointmentStatus
 }
 
@@ -338,7 +338,7 @@ export type AppointmentUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAndTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentSlot?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appointmentSlot?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
 }
 
@@ -348,7 +348,7 @@ export type AppointmentUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateAndTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  appointmentSlot?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  appointmentSlot?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumAppointmentStatusFieldUpdateOperationsInput | $Enums.AppointmentStatus
 }
 
@@ -451,7 +451,7 @@ export type $AppointmentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     email: string
     message: string | null
     dateAndTime: Date
-    appointmentSlot: Date
+    appointmentSlot: string
     status: $Enums.AppointmentStatus
   }, ExtArgs["result"]["appointment"]>
   composites: {}
@@ -881,7 +881,7 @@ export interface AppointmentFieldRefs {
   readonly email: Prisma.FieldRef<"Appointment", 'String'>
   readonly message: Prisma.FieldRef<"Appointment", 'String'>
   readonly dateAndTime: Prisma.FieldRef<"Appointment", 'DateTime'>
-  readonly appointmentSlot: Prisma.FieldRef<"Appointment", 'DateTime'>
+  readonly appointmentSlot: Prisma.FieldRef<"Appointment", 'String'>
   readonly status: Prisma.FieldRef<"Appointment", 'AppointmentStatus'>
 }
     

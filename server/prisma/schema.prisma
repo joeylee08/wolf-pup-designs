@@ -26,7 +26,7 @@ model Appointment {
   name            String
   email           String
   message         String?
-  dateAndTime     DateTime           @default(now())
-  appointmentSlot DateTime
+  dateAndTime     DateTime          @default(now())
+  appointmentSlot String            @unique
   status          AppointmentStatus @default(BOOKED)
 }
