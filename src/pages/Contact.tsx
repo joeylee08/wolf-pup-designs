@@ -23,11 +23,27 @@ const Contact = () => {
     const handleRequestAppointment = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
-    const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSendMessage = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        try {
+            const response = await fetch("http://localhost:3001/api/messages", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(messageData),
+            });
+            if (!response.ok) {
+                throw new Error("Failed to send message");
+            }
+            alert("Your message was sent successfully!");
+        } catch(error) {
+            console.error("Message submission failed:", error);
+            alert("Something went wrong. Please try again.");
+        }
     }
-
-
+    
     return (
         <div className='mainPage contact'>
             <h2 className='sectionHeading'>Contact Us</h2>
@@ -35,7 +51,7 @@ const Contact = () => {
                 <div className='sectionModule'>
                     <p className='moduleHeading'>01 / REQUEST A FREE CONSULTATION</p>
                     <br/>
-                    <p>Schedule a free 30-minute consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
+                    <p>Schedule a free 30-minute Zoom consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
                     <br/>
                     <form onSubmit={handleRequestAppointment}>
                         <label htmlFor='appointmentName'>Name: </label>

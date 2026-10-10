@@ -45,7 +45,7 @@ const Home = () => {
             <div className='child child3'>
                 <h2 className='subHeading'>Have a project in mind?</h2>
                 <br/>
-                <p>Schedule a free 30-minute consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
+                <p>Schedule a free 30-minute Zoom consultation to discuss your business, your current workflow, and what a custom solution could look like.</p>
                 <br/>
                 <button type='button' className='pageBtn'>CONTACT US</button>
             </div>
