@@ -7,12 +7,6 @@ datasource db {
   provider = "postgresql"
 }
 
-enum AppointmentStatus {
-  BOOKED
-  COMPLETED
-  CANCELED
-}
-
 model Message {
   id          Int      @id @default(autoincrement())
   name        String
@@ -28,5 +22,9 @@ model Appointment {
   message         String?
   dateAndTime     DateTime          @default(now())
   appointmentSlot String            @unique
-  status          AppointmentStatus @default(BOOKED)
+}
+
+model BlockedSlot {
+	id              Int    @id @default(autoincrement())
+	appointmentSlot String @unique
 }

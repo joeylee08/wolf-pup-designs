@@ -306,7 +306,7 @@ form > textarea {
 .mainPage .admin {
   padding-top: 5rem;
 }
-.admin .child {
+.admin .child1 {
   margin: 2.5rem auto 1.5rem auto;
   height: 28rem;
   width: 50%;
@@ -317,6 +317,43 @@ form > textarea {
   align-items: center;
   justify-content: center;
   padding: 2.5rem;
+}
+.admin .child2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.admin .appointmentCard {
+  border: 0.05rem solid #C30010;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 450;
+}
+.dayGroup {
+	margin-bottom: 1.5rem;
+}
+.daySlots {
+  margin-top: 0.5rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+.OPEN {
+  color: green;
+}
+.BOOKED {
+  color: blue;
+}
+.BLOCKED {
+  color: red;
+}
+.admin .slotCard {
+  border: 0.05rem solid #C30010;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 450;
 }
 .admin input {
   width: 100%;

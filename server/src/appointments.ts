@@ -13,9 +13,9 @@ const appointmentTimes = [
 
 const TIMEZONE = "America/Los_Angeles";
 
-function generateAppointmentSlots() {
+function generateAppointmentSlots(requireNotice = true) {
 	const now = DateTime.now().setZone(TIMEZONE);
-	const earliest = now.plus({ hours: 24 });
+	const earliest = requireNotice ? now.plus({ hours: 24 }) : now;
 	const end = now.plus({ days: 5 }).endOf("day");
 
 	const slots = [];

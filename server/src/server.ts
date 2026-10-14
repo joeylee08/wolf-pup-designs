@@ -7,12 +7,14 @@ import { prisma } from "./db.js";
 import { Prisma } from "./generated/prisma/client.js";
 import { transporter } from "./mail.js";
 import { generateAppointmentSlots } from "./appointments.js";
+import type { Request, Response, NextFunction } from "express";
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true
 }));
 
 app.use(express.json());
@@ -34,12 +36,16 @@ app.use(session({
     }
 }))
 
+const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
+	if (req.session.isAdmin !== true) return res.status(401).json({ error: "Unauthorized" });
+	next();
+};
+
 app.get("/api/appointments", async (req, res) => {
   try {
     const slots = generateAppointmentSlots();
 
     const bookedAppointments = await prisma.appointment.findMany({
-        where: { status: "BOOKED" },
         select: { appointmentSlot: true },
     });
     const bookedTimes = new Set(bookedAppointments.map((appointment) => appointment.appointmentSlot));
@@ -208,38 +214,109 @@ app.post("/api/admin/login", async(req, res) => {
 	});
   }
   try {
-      const passwordMatches = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH!)
-      if (!passwordMatches) {
-        return res.status(401).json({
-            error: "Incorrect password."
+    const passwordMatches = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH!)
+    if (!passwordMatches) {
+      return res.status(401).json({
+          error: "Incorrect password."
+      })
+    }
+    // Password is correct. Create the admin session.
+    req.session.regenerate(error => {
+      if (error) {
+        console.error("Session creation failed:", error);
+        return res.status(500).json({
+            error: "Unable to create admin session."
         })
       }
-      // Password is correct. Create the admin session.
-      req.session.regenerate(error => {
+      req.session.isAdmin = true;
+      req.session.save(error => {
         if (error) {
-          console.error("Session creation failed:", error);
+          console.error("Session save failed:", error);
           return res.status(500).json({
-              error: "Unable to create admin session."
+              error: "Unable to save admin session."
           })
         }
-        req.session.isAdmin = true;
-        req.session.save(error => {
-            if (error) {
-              console.error("Session save failed:", error);
-              return res.status(500).json({
-                  error: "Unable to save admin session."
-              })
-            }
-            return res.status(200).json({
-                success: true
-            })
+        return res.status(200).json({
+            success: true
         })
+      })
     })
   } catch(error) {
       console.error("Admin login failed:", error);
       return res.status(500).json({
           error: "Unable to authenticate."
       })
+  }
+})
+
+app.post("/api/admin/logout", (req, res) => {
+  req.session.destroy(error => {
+    if (error) {
+      console.error("Admin logout failed:", error);
+      return res.status(500).json({
+          error: "Unable to log out."
+      });
+    }
+    res.clearCookie("wolfpup.sid");
+    return res.status(200).json({
+        success: true
+    });
+  });
+});
+
+app.get("/api/admin/session", (req, res) => {
+  return res.status(200).json({
+      authenticated: req.session.isAdmin === true
+  });
+});
+
+app.get("/api/admin/appointments", requireAdmin, async (req, res) => {
+	try {
+		const appointments = await prisma.appointment.findMany();
+    const slotOrder: Record<string, number> = {
+      M1: 1,
+      M2: 2,
+      A1: 3,
+      A2: 4,
+      E1: 5,
+      E2: 6
+    };
+    appointments.sort((a, b) => {
+      const dateA = a.appointmentSlot.slice(0, 10);
+      const dateB = b.appointmentSlot.slice(0, 10);
+
+      if (dateA !== dateB) return dateA.localeCompare(dateB);
+
+      const slotA = a.appointmentSlot.slice(11);
+      const slotB = b.appointmentSlot.slice(11);
+
+      return (slotOrder[slotA] ?? Infinity) - (slotOrder[slotB] ?? Infinity);
+    });
+		return res.status(200).json(appointments);
+	} catch (error) {
+		console.error("Failed to retrieve appointments:", error);
+		return res.status(500).json({ error: "Unable to retrieve appointments." });
+	}
+});
+
+app.get("/api/admin/slots", requireAdmin, async (req, res) => {
+  try {
+    const slots = generateAppointmentSlots(false);
+    const appointments = await prisma.appointment.findMany({
+			select: { appointmentSlot: true }
+		});
+    const bookedSlots = new Set(
+			appointments.map(item => item.appointmentSlot)
+		);
+    const slotsWithStatus = slots.map(slot => ({
+			...slot,
+			status: bookedSlots.has(slot.id) ? "BOOKED" : "OPEN"
+		}));
+    res.status(200).json(slotsWithStatus);
+  } catch(error) {
+    console.error("Failed to fetch upcoming slots:", error);
+
+    res.status(500).json({ error: "Unable to fetch upcoming slots." });
   }
 })
 
