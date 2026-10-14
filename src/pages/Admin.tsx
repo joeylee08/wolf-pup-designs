@@ -31,6 +31,7 @@ const Admin = () => {
 	const [isActive, setIsActive] = useState(true);
 	const [appointments, setAppointments] = useState<Appointment[]>([]);
 	const [slots, setSlots] = useState<AppointmentSlot[]>([]);
+	const [pendingAction, setPendingAction] = useState<string | null>(null);
 
 	//check admin session
 	useEffect(() => {
@@ -106,7 +107,12 @@ const Admin = () => {
 	};
 
 	const handleCancelAppointment = (id: number) => {
+		if (pendingAction) return;
 		if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
+
+		const appointment = appointments.find(item => item.id === id);
+		if (!appointment) return;
+		setPendingAction(`cancel-${id}`);
 
 		fetch(`http://localhost:3001/api/admin/appointments/${id}`, {
 			method: "DELETE",
@@ -126,7 +132,8 @@ const Admin = () => {
 				)
 			);
 		})
-		.catch(error => console.error("Appointment cancellation failed:", error));
+		.catch(error => console.error("Appointment cancellation failed:", error))
+		.finally(() => setPendingAction(null))
 	};
 
 	const slotTimes: Record<string, string> = {
@@ -148,7 +155,7 @@ const Admin = () => {
 			{formatDate(item.appointmentSlot.slice(0, 10))} @ {slotTimes[item.appointmentSlot.slice(11)]}
 			<br/>
 			<br/>
-			<button className='pageBtn cancelBtn' onClick={() => handleCancelAppointment(item.id)}>Cancel Appointment</button>
+			<button className='pageBtn cancelBtn' disabled={pendingAction !== null} onClick={() => handleCancelAppointment(item.id)}>{pendingAction === `cancel-${item.id}` ? "Cancelling..." : "Cancel Appointment"}</button>
 		</div>
 	))
 
@@ -169,14 +176,14 @@ const Admin = () => {
 					{["M1", "M2", "A1", "A2", "E1", "E2"].map(code => {
 						const slot = daySlots.find(item => item.id.endsWith(code));
 						return (
-							<div className={`slotCard ${slot ? "" : "missing"}`} key={code} onClick={() => {if (slot) handleToggleSlot(slot)}}>
+							<button className={`slotCard ${slot ? "" : "missing"}`} key={code} disabled={pendingAction !== null} onClick={() => {if (slot) handleToggleSlot(slot)}}>
 								{slot && (			
 									<>
 										<p>{slot.label.slice(15)}</p>
 										<p className={slot.status}>{slot.status}</p>
 									</>
 								)}
-							</div>
+							</button>
 						);
 					})}
 			</div>
@@ -184,7 +191,8 @@ const Admin = () => {
 	));
 
 	const handleToggleSlot = (slot: AppointmentSlot) => {
-		if (slot.status === "BOOKED") return;
+		if (pendingAction || slot.status === "BOOKED") return;
+		setPendingAction(`slot-${slot.id}`);
 
 		const blocking = slot.status === "OPEN";
 
@@ -207,8 +215,25 @@ const Admin = () => {
 				)
 			);
 		})
-		.catch(error => console.error("Slot update failed:", error));
+		.catch(error => console.error("Slot update failed:", error))
+		.finally(() => setPendingAction(null));
 	};
+
+	const handleLogout = () => {
+		fetch("http://localhost:3001/api/admin/logout", {
+			method: "POST",
+			credentials: "include"
+		})
+		.then(res => {
+			if (!res.ok) throw new Error("Failed to log out.");
+
+			setIsActive(false);
+			setAdminPass({ password: "" });
+			setAppointments([]);
+			setSlots([]);
+		})
+		.catch(error => console.error("Logout failed:", error));
+	}
 
 	return !isActive ? (
 		<div className="mainPage admin">
@@ -240,6 +265,9 @@ const Admin = () => {
 			<h2 className="sectionHeading">All Appointment Slots</h2>
 			<div className='child child3'>
 				<div className='upcomingSlots'>{allSlots}</div>
+			</div>
+			<div className='child child4'>
+				<button className='pageBtn' type='button' onClick={handleLogout}>LOGOUT</button>
 			</div>
 		</div>
 	);

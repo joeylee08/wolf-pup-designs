@@ -338,25 +338,40 @@ app.delete("/api/admin/appointments/:id", requireAdmin, async (req, res) => {
 });
 
 app.get("/api/admin/slots", requireAdmin, async (req, res) => {
-  try {
-    const slots = generateAppointmentSlots(false);
-    const appointments = await prisma.appointment.findMany({
+	try {
+		const slots = generateAppointmentSlots(false);
+
+		const appointments = await prisma.appointment.findMany({
 			select: { appointmentSlot: true }
 		});
-    const bookedSlots = new Set(
+
+		const blockedSlots = await prisma.blockedSlot.findMany({
+			select: { appointmentSlot: true }
+		});
+
+		const bookedTimes = new Set(
 			appointments.map(item => item.appointmentSlot)
 		);
-    const slotsWithStatus = slots.map(slot => ({
-			...slot,
-			status: bookedSlots.has(slot.id) ? "BOOKED" : "OPEN"
-		}));
-    res.status(200).json(slotsWithStatus);
-  } catch(error) {
-    console.error("Failed to fetch upcoming slots:", error);
 
-    res.status(500).json({ error: "Unable to fetch upcoming slots." });
-  }
-})
+		const blockedTimes = new Set(
+			blockedSlots.map(item => item.appointmentSlot)
+		);
+
+		const slotsWithStatus = slots.map(slot => ({
+			...slot,
+			status: bookedTimes.has(slot.id)
+				? "BOOKED"
+				: blockedTimes.has(slot.id)
+					? "BLOCKED"
+					: "OPEN"
+		}));
+
+		res.status(200).json(slotsWithStatus);
+	} catch (error) {
+		console.error("Failed to fetch upcoming slots:", error);
+		res.status(500).json({ error: "Unable to fetch upcoming slots." });
+	}
+});
 
 app.post("/api/admin/slots/block", requireAdmin, async (req, res) => {
 	const { appointmentSlot } = req.body;
