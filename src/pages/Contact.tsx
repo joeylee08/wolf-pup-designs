@@ -1,5 +1,5 @@
 import wolfpuplogo from "../assets/images/wolfpuplogo.png";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Contact = () => {
     type AppointmentSlot = {
@@ -7,25 +7,33 @@ const Contact = () => {
         label: string;
     };
 
-    //setter commented out for demo deployment
-    const [availableSlots] = useState<AppointmentSlot[]>([]);
+    const [availableSlots, setAvailableSlots] = useState<AppointmentSlot[]>([]);
 
-    // useEffect(() => {
-    //     function fetchAppointments() {
-    //         fetch("http://localhost:3001/api/appointments")
-    //             .then(res => {
-    //                 if (!res.ok) throw new Error("Failed to fetch appointments");
-    //                 return res.json()
-    //             })
-    //             .then(json => setAvailableSlots(json))
-    //             .catch(error => console.error(error))
-    //     }
-    //     fetchAppointments();
-    // }, []);
+    function fetchAppointments() {
+            fetch("http://localhost:3001/api/appointments")
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to fetch appointments");
+                    return res.json()
+                })
+                .then(json => setAvailableSlots(json))
+                .catch(error => {
+                    console.error(error)
+                    alert('Failed to fetch available appointments.')
+                })
+        }
+
+    useEffect(() => {
+        fetchAppointments();
+    }, []);
+
+    type SubmissionStatus = "idle" | "sending";
+    const [messageStatus, setMessageStatus] = useState<SubmissionStatus>("idle");
+    const [appointmentStatus, setAppointmentStatus] = useState<SubmissionStatus>("idle");
 
     const [appointmentData, setAppointmentData] = useState({name: '', email: '', appointmentDate: '', appointmentTime: '', message: ''})
     const [messageData, setMessageData] = useState({name: '', email: '', message: ''})
 
+    //controlled form handlers
     const handleSetAppointmentData = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target
         setAppointmentData(previous => ({
@@ -42,8 +50,13 @@ const Contact = () => {
         }));
     }
 
+    //submit handlers
     const handleRequestAppointment = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        if (appointmentStatus === 'sending') return
+        setAppointmentStatus('sending')
+
         const formattedAppointmentData = {
             name: appointmentData.name.trim(),
             email: appointmentData.email.trim(),
@@ -59,15 +72,30 @@ const Contact = () => {
         })
         .then(res => {
             if (!res.ok) throw new Error("Failed to send message")
+            //use snackbar alert
             alert("Your request was sent successfully!")
+            fetchAppointments()
+            setAppointmentData({
+                name: "",
+                email: "",
+                appointmentDate: "",
+                appointmentTime: "",
+                message: ""
+            });
         })
         .catch(error => {
             console.error("Request submission failed:", error)
+            //use snackbar alert
             alert("Request failed to send. Please try again.")
         })
+        .finally(() => setAppointmentStatus('idle'))
     }
     const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        if (messageStatus === 'sending') return
+        setMessageStatus('sending')
+
         fetch("http://localhost:3001/api/messages", {
             method: "POST",
             headers: {
@@ -78,11 +106,17 @@ const Contact = () => {
         .then(res => {
             if (!res.ok) throw new Error("Failed to send message")
             alert("Your message was sent successfully!")
+            setMessageData({
+                name: "",
+                email: "",
+                message: ""
+            });
         })
         .catch(error => {
             console.error("Message submission failed:", error)
             alert("Message failed to send. Please try again.")
         })
+        .finally(() => setMessageStatus('idle'))
     }
     const datesOnly = [...new Map(
         availableSlots.map(slot => [slot.id.slice(0, 10), slot.label.split('at')[0].trim()] as const)
@@ -122,7 +156,7 @@ const Contact = () => {
                         <label htmlFor='appointmentMessage'>Notes [Optional]: </label>
                         <textarea id='appointmentMessage' name='message' rows={6} placeholder='Anything you would like me to know?' value={appointmentData.message} onChange={handleSetAppointmentData}></textarea>
                         <br/>
-                        <button type='submit' className='pageBtn' disabled>SEND REQUEST</button>
+                        <button type='submit' className='pageBtn' disabled={appointmentStatus === 'sending'}>{appointmentStatus === 'sending' ? 'SENDING...' : 'SEND REQUEST'}</button>
                     </form>
                 </div>
                 <br/>
@@ -140,7 +174,7 @@ const Contact = () => {
                         <label htmlFor='messageNotes'>Your Message: </label>
                         <textarea id='messageNotes' name='message' rows={6} placeholder='Tell me about your project.' value={messageData.message} onChange={handleSetMessageData} required></textarea>
                         <br/>
-                        <button type='submit' className='pageBtn' disabled>SEND MESSAGE</button>
+                        <button type='submit' className='pageBtn' disabled={messageStatus === 'sending'}>{messageStatus === 'sending' ? 'SENDING...' : 'SEND REQUEST'}</button>
                     </form>
                 </div>
             </div>
