@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import session from "express-session";
+import bcrypt from "bcrypt";
 import "dotenv/config";
 import { prisma } from "./db.js";
 import { Prisma } from "./generated/prisma/client.js";
@@ -14,6 +16,23 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+if (!process.env.SESSION_SECRET) {
+  throw new Error("SESSION_SECRET is not configured.")
+}
+
+app.use(session({
+    name: "wolfpup.sid",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}))
 
 app.get("/api/appointments", async (req, res) => {
   try {
@@ -122,20 +141,20 @@ app.post("/api/appointments", async (req, res) => {
     })
     //nested try/catch to send appointment email alert to me
     try {
-      await transporter.sendMail({
-          from: '"Wolf Pup Designs" <info@wolfpupdesigns.org>',
-          to: "info@wolfpupdesigns.org",
-          replyTo: email.trim(),
-          subject: `New Consultation Request from ${name.trim()}`,
-          text: [
-              `Name: ${name.trim()}`,
-              `Email: ${email.trim()}`,
-              `Appointment: ${slot.label} (Pacific Time)`,
-              "",
-              "Notes:",
-              message?.trim() || "None provided"
-          ].join("\n")
-      })
+		await transporter.sendMail({
+			from: '"Wolf Pup Designs" <info@wolfpupdesigns.org>',
+			to: "info@wolfpupdesigns.org",
+			replyTo: email.trim(),
+			subject: `New Consultation Request from ${name.trim()}`,
+			text: [
+				`Name: ${name.trim()}`,
+				`Email: ${email.trim()}`,
+				`Appointment: ${slot.label} (Pacific Time)`,
+				"",
+				"Notes:",
+				message?.trim() || "None provided"
+			].join("\n")
+		})
     } catch(error) {
         console.error(`Email notification failed for appointment ${savedAppointment.id}:`,error)
     }
@@ -178,6 +197,49 @@ app.post("/api/appointments", async (req, res) => {
     return res.status(500).json({
         error: "Unable to book appointment."
     })
+  }
+})
+
+app.post("/api/admin/login", async(req, res) => {
+  const { password } = req.body;
+  if (typeof password !== "string" || !password) {
+	return res.status(400).json({
+		error: "Password is required."
+	});
+  }
+  try {
+      const passwordMatches = await bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH!)
+      if (!passwordMatches) {
+        return res.status(401).json({
+            error: "Incorrect password."
+        })
+      }
+      // Password is correct. Create the admin session.
+      req.session.regenerate(error => {
+        if (error) {
+          console.error("Session creation failed:", error);
+          return res.status(500).json({
+              error: "Unable to create admin session."
+          })
+        }
+        req.session.isAdmin = true;
+        req.session.save(error => {
+            if (error) {
+              console.error("Session save failed:", error);
+              return res.status(500).json({
+                  error: "Unable to save admin session."
+              })
+            }
+            return res.status(200).json({
+                success: true
+            })
+        })
+    })
+  } catch(error) {
+      console.error("Admin login failed:", error);
+      return res.status(500).json({
+          error: "Unable to authenticate."
+      })
   }
 })
 
