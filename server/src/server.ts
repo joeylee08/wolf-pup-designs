@@ -50,7 +50,12 @@ app.get("/api/appointments", async (req, res) => {
     });
     const bookedTimes = new Set(bookedAppointments.map((appointment) => appointment.appointmentSlot));
 
-    const availableSlots = slots.filter((slot) => !bookedTimes.has(slot.id));
+    const blockedSlots = await prisma.blockedSlot.findMany({
+      select: { appointmentSlot: true}
+    })
+    const blockedTimes = new Set(blockedSlots.map((slot) => slot.appointmentSlot));
+
+    const availableSlots = slots.filter((slot) => !bookedTimes.has(slot.id) && !blockedTimes.has(slot.id));
 
     res.status(200).json(availableSlots);
   } catch(error) {
@@ -319,6 +324,64 @@ app.get("/api/admin/slots", requireAdmin, async (req, res) => {
     res.status(500).json({ error: "Unable to fetch upcoming slots." });
   }
 })
+
+app.post("/api/admin/slots/block", requireAdmin, async (req, res) => {
+	const { appointmentSlot } = req.body;
+
+	if (typeof appointmentSlot !== "string") {
+		return res.status(400).json({ error: "Invalid slot." });
+	}
+
+	const validSlots = generateAppointmentSlots(false);
+
+	if (!validSlots.some(slot => slot.id === appointmentSlot)) {
+		return res.status(400).json({ error: "Invalid or expired slot." });
+	}
+
+	try {
+		const blocked = await prisma.$transaction(async tx => {
+			const booked = await tx.appointment.findUnique({
+				where: { appointmentSlot }
+			});
+
+			if (booked) return false;
+
+			await tx.blockedSlot.create({
+				data: { appointmentSlot }
+			});
+
+			return true;
+		});
+
+		if (!blocked) {
+			return res.status(409).json({ error: "Slot is already booked." });
+		}
+
+		return res.status(201).json({ success: true });
+	} catch(error) {
+		console.error("Failed to block slot:", error);
+		return res.status(409).json({ error: "Unable to block slot." });
+	}
+});
+
+app.delete("/api/admin/slots/block", requireAdmin, async (req, res) => {
+	const { appointmentSlot } = req.body;
+
+	if (typeof appointmentSlot !== "string") {
+		return res.status(400).json({ error: "Invalid slot." });
+	}
+
+	try {
+		await prisma.blockedSlot.deleteMany({
+			where: { appointmentSlot }
+		});
+
+		return res.status(200).json({ success: true });
+	} catch (error) {
+		console.error("Failed to unblock slot:", error);
+		return res.status(500).json({ error: "Unable to unblock slot." });
+	}
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

@@ -115,7 +115,7 @@ const Admin = () => {
     };
 	
 	const scheduledAppointments = appointments.map(item => (
-		<div className='appointmentCard'>
+		<div className='appointmentCard' key={item.id}>
 			{item.name}
 			<br/>
 			{item.email}
@@ -139,18 +139,49 @@ const Admin = () => {
 		<div className="dayGroup" key={date}>
 			<h3>{formatDate(date)}</h3>
 			<div className="daySlots">
-				{daySlots?.map(slot => (
-					<div className="slotCard" key={slot.id} style={{
-																										gridColumn: slot.id.endsWith("1") ? 1 : 2,
-																										gridRow: slot.id.includes("-M") ? 1 : slot.id.includes("-A") ? 2 : 3
-																									}}>
-						<p>{slot.label.slice(15)}</p>
-						<p className={slot.status}>{slot.status}</p>
-					</div>
-				))}
+					{["M1", "M2", "A1", "A2", "E1", "E2"].map(code => {
+						const slot = daySlots.find(item => item.id.endsWith(code));
+						return (
+							<div className={`slotCard ${slot ? "" : "missing"}`} key={code} onClick={() => {if (slot) handleToggleSlot(slot)}}>
+								{slot && (			
+									<>
+										<p>{slot.label.slice(15)}</p>
+										<p className={slot.status}>{slot.status}</p>
+									</>
+								)}
+							</div>
+						);
+					})}
 			</div>
 		</div>
 	));
+
+	const handleToggleSlot = (slot: AppointmentSlot) => {
+		if (slot.status === "BOOKED") return;
+
+		const blocking = slot.status === "OPEN";
+
+		fetch("http://localhost:3001/api/admin/slots/block", {
+			method: blocking ? "POST" : "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			credentials: "include",
+			body: JSON.stringify({ appointmentSlot: slot.id })
+		})
+		.then(res => {
+			if (!res.ok) throw new Error("Failed to update slot.");
+
+			setSlots(previous =>
+				previous.map(item =>
+					item.id === slot.id
+						? { ...item, status: blocking ? "BLOCKED" : "OPEN" }
+						: item
+				)
+			);
+		})
+		.catch(error => console.error("Slot update failed:", error));
+	};
 
 	return !isActive ? (
 		<div className="mainPage admin">
