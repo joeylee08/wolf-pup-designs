@@ -105,6 +105,30 @@ const Admin = () => {
 		});
 	};
 
+	const handleCancelAppointment = (id: number) => {
+		if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
+
+		fetch(`http://localhost:3001/api/admin/appointments/${id}`, {
+			method: "DELETE",
+			credentials: "include"
+		})
+		.then(res => {
+			if (!res.ok) throw new Error("Failed to cancel appointment.");
+
+			setAppointments(previous =>
+				previous.filter(item => item.id !== id)
+			);
+			setSlots(previous =>
+				previous.map(slot =>
+					slot.id === appointments.find(item => item.id === id)?.appointmentSlot
+						? { ...slot, status: "OPEN" }
+						: slot
+				)
+			);
+		})
+		.catch(error => console.error("Appointment cancellation failed:", error));
+	};
+
 	const slotTimes: Record<string, string> = {
       M1: '9:00 AM',
       M2: '9:45 AM',
@@ -122,6 +146,9 @@ const Admin = () => {
 			<br/>
 			<br/>
 			{formatDate(item.appointmentSlot.slice(0, 10))} @ {slotTimes[item.appointmentSlot.slice(11)]}
+			<br/>
+			<br/>
+			<button className='pageBtn cancelBtn' onClick={() => handleCancelAppointment(item.id)}>Cancel Appointment</button>
 		</div>
 	))
 

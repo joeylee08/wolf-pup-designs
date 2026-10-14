@@ -135,12 +135,24 @@ app.post("/api/appointments", async (req, res) => {
 
   const requestedSlot = appointmentSlot.trim()
   const validSlots = generateAppointmentSlots()
+
   const slot = validSlots.find(slot => slot.id === requestedSlot)
+
   if (!slot) {
     return res.status(400).json({
         error: "The requested appointment slot is invalid or no longer available."
     })
   }
+
+  const isBlocked = await prisma.blockedSlot.findUnique({
+    where: { appointmentSlot: requestedSlot}
+  })
+  if (isBlocked) {
+    return res.status(409).json({
+      error: "This appointment slot is blocked."
+    });
+  }
+
   try {
     const savedAppointment = await prisma.appointment.create({
       data: {
@@ -301,6 +313,27 @@ app.get("/api/admin/appointments", requireAdmin, async (req, res) => {
 	} catch (error) {
 		console.error("Failed to retrieve appointments:", error);
 		return res.status(500).json({ error: "Unable to retrieve appointments." });
+	}
+});
+
+app.delete("/api/admin/appointments/:id", requireAdmin, async (req, res) => {
+	const id = Number(req.params.id);
+
+	if (!Number.isSafeInteger(id) || id <= 0) {
+		return res.status(400).json({ error: "Invalid appointment ID." });
+	}
+
+	try {
+		const deleted = await prisma.appointment.deleteMany({ where: { id } });
+
+		if (deleted.count === 0) {
+			return res.status(404).json({ error: "Appointment not found." });
+		}
+
+		return res.status(200).json({ success: true });
+	} catch (error) {
+		console.error("Failed to cancel appointment:", error);
+		return res.status(500).json({ error: "Unable to cancel appointment." });
 	}
 });
 
