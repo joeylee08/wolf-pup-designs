@@ -148,20 +148,6 @@ app.post("/api/messages", async (req, res) => {
   }
 });
 
-function escapeHtml(value: string): string {
-	return value.replace(/[&<>"']/g, char => {
-		const entities: Record<string, string> = {
-			"&": "&amp;",
-			"<": "&lt;",
-			">": "&gt;",
-			'"': "&quot;",
-			"'": "&#39;"
-		};
-
-		return entities[char] ?? char;
-	});
-}
-
 app.post("/api/appointments", async (req, res) => {
   const { name, email, message, appointmentSlot } = req.body
   if (
@@ -229,15 +215,18 @@ app.post("/api/appointments", async (req, res) => {
       await sendZohoEmail({
           to: email.trim(),
           subject: "Your Wolf Pup Designs Consultation Is Confirmed",
-          html: true,
           text: [
-            `<p>Hi, ${escapeHtml(name.trim())},</p>`,
-            "<p>Your complimentary 30-minute consultation has been scheduled.</p>",
-            `<p><strong>${escapeHtml(slot.label)} (Pacific Time)</strong></p>`,
-            "<p>I'll follow up with the Zoom meeting details.</p>",
-            "<p>If you need to cancel or reschedule, simply reply to this email.</p>",
-            "<p>Looking forward to speaking with you.</p>",
-            '<p><img src="https://wolfpupdesigns.org/emailwolflogo.png" alt="Wolf Pup Designs" width="240" style="display:block;max-width:120px;height:auto;"></p>'
+            `Hi ${name.trim()},`,
+            "",
+            "Your complimentary 30-minute consultation has been scheduled.",
+            "",
+            `${slot.label} (Pacific Time)`,
+            "",
+            "I'll follow up with the Zoom meeting details.",
+            "",
+            "If you need to cancel or reschedule, simply reply to this email.",
+            "",
+            "Looking forward to speaking with you."
           ].join("\n")
       })
     } catch (error) {
