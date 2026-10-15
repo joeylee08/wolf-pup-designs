@@ -4,7 +4,7 @@ import SnackBar from "../components/SnackBar";
 
 const Contact = () => {
 	const [snackMessage, setSnackMessage] = useState({message: '', color: ''})
-	const [snackOpen, setSnackOpen] = useState(true)
+	const [snackOpen, setSnackOpen] = useState(false)
 
 	const showSnack = (message: string, color: string) => {
 		if (snackOpen) return
