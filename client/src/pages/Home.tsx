@@ -1,6 +1,8 @@
 import wolfpuplogo from "../assets/images/wolfpuplogo.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+
 	return (
 		<div className="mainPage home">
 			<div className="hero">
@@ -85,9 +87,9 @@ const Home = () => {
 					could look like.
 				</p>
 				<br />
-				<button type="button" className="pageBtn">
+				<Link to="/contact" className="pageBtn">
 					CONTACT US
-				</button>
+				</Link>
 			</div>
 		</div>
 	);

@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import Error from "./pages/Error";
 import NavBar from "./components/NavBar";
 import Admin from "./pages/Admin";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
 	const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
 function Root() {
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<App />
 		</BrowserRouter>
 	);

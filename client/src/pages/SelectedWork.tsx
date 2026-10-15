@@ -38,20 +38,20 @@ const SelectedWork = () => {
 					</a>
 				</div>
 			</div>
-			{/* <div className='child child2'>
+			<div className='child child2'>
                 <div className='sectionModule'>
-                    <p className='moduleHeading'>02 / SEED OF AWAKENING MARTIAL ARTS</p>
+                    <p className='moduleHeading'>02 / PALANG MUAY THAI</p>
                     <br/>
-                    <p>PROBLEM: Hillsboro-based martial arts and Muay Thai gym needed a professional online presence to attract prospective students, communicate its training philosophy, and streamline scheduling and administrative tasks.</p>
+                    <p>PROBLEM: Oregon-based martial arts and Muay Thai gym needed a professional online presence to attract prospective students, communicate its training philosophy, and streamline scheduling and administrative tasks.</p>
                     <br/>
                     <p>SOLUTION: A modern, easy-to-navigate website that clearly showcases the gym, its philosophy, and programs offered. Prospective students can contact the owner and schedule trial sessions, while current students can set up recurring tuition payments.</p>
                     <br/>
-                    <img className='projectThumb' src={underconstruction} alt='SOA Project Thumbnail'></img>
+                    <img className='projectThumb' src={underconstruction} alt='Palang MT Project Thumbnail'></img>
                     <br/>
-                    <a className='pageBtn' href="https://wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">SoA Martial Arts</a>
+                    <a className='pageBtn' href="https://wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">Palang Muay Thai</a>
                 </div>
-            </div> */}
-			<div className="child child3">
+            </div>
+			{/* <div className="child child3">
 				<div className="sectionModule">
 					<p className="moduleHeading">02 / ALL NATIONS MFC</p>
 					<br />
@@ -84,7 +84,7 @@ const SelectedWork = () => {
 						All Nations MFC
 					</a>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

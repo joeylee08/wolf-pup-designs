@@ -1,7 +1,17 @@
 import wolfpuplogo from "../assets/images/wolfpuplogo.png";
 import { useState, useEffect } from "react";
+import SnackBar from "../components/SnackBar";
 
 const Contact = () => {
+	const [snackMessage, setSnackMessage] = useState({message: '', color: ''})
+	const [snackOpen, setSnackOpen] = useState(true)
+
+	const showSnack = (message: string, color: string) => {
+		setSnackMessage({ message: message, color: color})
+		setSnackOpen(true);
+		setTimeout(() => setSnackOpen(false), 3000);
+	};
+	
 	type AppointmentSlot = {
 		id: string;
 		label: string;
@@ -18,7 +28,7 @@ const Contact = () => {
 			.then((json) => setAvailableSlots(json))
 			.catch((error) => {
 				console.error(error);
-				alert("Failed to fetch available appointments.");
+				
 			});
 	}
 
@@ -93,11 +103,12 @@ const Contact = () => {
 			.then((res) => {
 				if (res.status === 409) {
 					fetchAppointments();
-					throw new Error("That appointment is no longer available. Please select another time.");
+					showSnack("Please select another time.", "redSnack")
+					throw new Error("Please select another time.");
 				}
 				if (!res.ok) throw new Error("Request failed to send. Please try again.");
 				//use snackbar alert
-				alert("Your request was sent successfully!");
+				showSnack("Your request was sent successfully!", "greenSnack");
 				fetchAppointments();
 				setAppointmentData({
 					name: "",
@@ -109,8 +120,7 @@ const Contact = () => {
 			})
 			.catch((error) => {
 				console.error("Request submission failed:", error);
-				//use snackbar alert
-				alert(error.message);
+				showSnack('Request submission failed.', 'redSnack')
 			})
 			.finally(() => setAppointmentStatus("idle"));
 	};
@@ -129,7 +139,7 @@ const Contact = () => {
 		})
 			.then((res) => {
 				if (!res.ok) throw new Error("Failed to send message");
-				alert("Your message was sent successfully!");
+				showSnack("Your message was sent successfully!", "greenSnack");
 				setMessageData({
 					name: "",
 					email: "",
@@ -138,7 +148,7 @@ const Contact = () => {
 			})
 			.catch((error) => {
 				console.error("Message submission failed:", error);
-				alert("Message failed to send. Please try again.");
+				showSnack("Message failed to send. Please try again.", "redSnack");
 			})
 			.finally(() => setMessageStatus("idle"));
 	};
@@ -314,6 +324,8 @@ const Contact = () => {
 					alt="Wolf Pup Designs Logo"
 				></img>
 			</div>
+			<button onClick={() => showSnack("Your request was sent successfully!", "greenSnack")}></button>
+			{snackOpen && <SnackBar message={snackMessage.message} color={snackMessage.color}/>}
 		</div>
 	);
 };
