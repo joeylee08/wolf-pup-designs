@@ -35,7 +35,7 @@ const Admin = () => {
 
 	//check admin session
 	useEffect(() => {
-		fetch("http://localhost:3001/api/admin/session", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/session`, {
 			credentials: "include"
 		})
 		.then(res => {
@@ -53,7 +53,7 @@ const Admin = () => {
 	useEffect(() => {
 		if (!isActive) return;
 
-		fetch("http://localhost:3001/api/admin/appointments", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/appointments`, {
 			credentials: "include"
 		})
 		.then(res => {
@@ -75,7 +75,7 @@ const Admin = () => {
 	useEffect(() => {
 		if (!isActive) return;
 
-		fetch("http://localhost:3001/api/admin/slots", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/slots`, {
 			credentials: "include"
 		})
 		.then(res => {
@@ -88,7 +88,7 @@ const Admin = () => {
 
 	const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		fetch("http://localhost:3001/api/admin/login", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -115,7 +115,7 @@ const Admin = () => {
 		if (!appointment) return;
 		setPendingAction(`cancel-${id}`);
 
-		fetch(`http://localhost:3001/api/admin/appointments/${id}`, {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/appointments/${id}`, {
 			method: "DELETE",
 			credentials: "include"
 		})
@@ -197,7 +197,7 @@ const Admin = () => {
 
 		const blocking = slot.status === "OPEN";
 
-		fetch("http://localhost:3001/api/admin/slots/block", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/slots/block`, {
 			method: blocking ? "POST" : "DELETE",
 			headers: {
 				"Content-Type": "application/json"
@@ -221,7 +221,7 @@ const Admin = () => {
 	};
 
 	const handleLogout = () => {
-		fetch("http://localhost:3001/api/admin/logout", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/admin/logout`, {
 			method: "POST",
 			credentials: "include"
 		})

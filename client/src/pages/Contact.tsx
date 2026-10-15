@@ -10,7 +10,7 @@ const Contact = () => {
 	const [availableSlots, setAvailableSlots] = useState<AppointmentSlot[]>([]);
 
 	function fetchAppointments() {
-		fetch("http://localhost:3001/api/appointments")
+		fetch(`${import.meta.env.VITE_API_URL}/api/appointments`)
 			.then((res) => {
 				if (!res.ok) throw new Error("Failed to fetch appointments");
 				return res.json();
@@ -83,7 +83,7 @@ const Contact = () => {
 			message: appointmentData.message,
 			appointmentSlot: `${appointmentData.appointmentDate.trim()}-${appointmentData.appointmentTime.trim()}`,
 		};
-		fetch("http://localhost:3001/api/appointments", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/appointments`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -120,7 +120,7 @@ const Contact = () => {
 		if (messageStatus === "sending") return;
 		setMessageStatus("sending");
 
-		fetch("http://localhost:3001/api/messages", {
+		fetch(`${import.meta.env.VITE_API_URL}/api/messages`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
