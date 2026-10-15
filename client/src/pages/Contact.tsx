@@ -325,7 +325,6 @@ const Contact = () => {
 					alt="Wolf Pup Designs Logo"
 				></img>
 			</div>
-			<button onClick={() => showSnack("Your request was sent successfully!", "greenSnack")}></button>
 			{snackOpen && <SnackBar message={snackMessage.message} color={snackMessage.color}/>}
 		</div>
 	);
