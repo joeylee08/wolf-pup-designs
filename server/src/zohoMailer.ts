@@ -5,9 +5,10 @@ type EmailOptions = {
 	to: string;
 	subject: string;
 	text: string;
+    html?: boolean;
 };
 
-export async function sendZohoEmail({ to, subject, text }: EmailOptions) {
+export async function sendZohoEmail({ to, subject, text, html = false }: EmailOptions) {
 	const clientId = process.env.ZOHO_CLIENT_ID;
 	const clientSecret = process.env.ZOHO_CLIENT_SECRET;
 	const refreshToken = process.env.ZOHO_REFRESH_TOKEN;
@@ -57,7 +58,7 @@ export async function sendZohoEmail({ to, subject, text }: EmailOptions) {
 				toAddress: to,
 				subject,
 				content: text,
-				mailFormat: "plaintext"
+				mailFormat: html ? "html" : "plaintext"
 			}),
 			signal: AbortSignal.timeout(15000)
 		}
