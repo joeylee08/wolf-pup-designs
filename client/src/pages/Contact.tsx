@@ -91,7 +91,11 @@ const Contact = () => {
 			body: JSON.stringify(formattedAppointmentData),
 		})
 			.then((res) => {
-				if (!res.ok) throw new Error("Failed to send message");
+				if (res.status === 409) {
+					fetchAppointments();
+					throw new Error("That appointment is no longer available. Please select another time.");
+				}
+				if (!res.ok) throw new Error("Request failed to send. Please try again.");
 				//use snackbar alert
 				alert("Your request was sent successfully!");
 				fetchAppointments();
@@ -106,7 +110,7 @@ const Contact = () => {
 			.catch((error) => {
 				console.error("Request submission failed:", error);
 				//use snackbar alert
-				alert("Request failed to send. Please try again.");
+				alert(error.message);
 			})
 			.finally(() => setAppointmentStatus("idle"));
 	};

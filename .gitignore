@@ -15,6 +15,7 @@ dist/
 .DS_Store
 dist-ssr
 *.local
+admin-cookies.txt
 
 # Editor directories and files
 .vscode/*

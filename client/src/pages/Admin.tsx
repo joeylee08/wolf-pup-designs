@@ -28,7 +28,7 @@ const Admin = () => {
 	};
 
 	const [adminPass, setAdminPass] = useState({ password: "" });
-	const [isActive, setIsActive] = useState(true);
+	const [isActive, setIsActive] = useState(false);
 	const [appointments, setAppointments] = useState<Appointment[]>([]);
 	const [slots, setSlots] = useState<AppointmentSlot[]>([]);
 	const [pendingAction, setPendingAction] = useState<string | null>(null);
@@ -103,7 +103,8 @@ const Admin = () => {
 		.catch(error => {
 			console.error("Admin login failed:", error);
 			alert("Login failed. Please check your password.");
-		});
+		})
+		.finally(() => setAdminPass({ password: '' }))
 	};
 
 	const handleCancelAppointment = (id: number) => {
@@ -260,6 +261,7 @@ const Admin = () => {
 	) : (
 		<div className="mainPage admin">
 			<h2 className="sectionHeading">Scheduled Appointments</h2>
+			{scheduledAppointments.length === 0 ? <h3 className='appointmentPlaceholder'>No Scheduled Appointments</h3> : null}
 			<div className="child child2">{scheduledAppointments}</div>
 			<br/>
 			<h2 className="sectionHeading">All Appointment Slots</h2>

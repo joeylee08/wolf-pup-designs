@@ -334,6 +334,9 @@ form > textarea {
   flex-direction: column;
   justify-content: center;
 }
+.appointmentPlaceholder {
+  margin-top: 1rem;
+}
 .cancelBtn {
   margin: 0 auto;
 }
@@ -356,6 +359,9 @@ form > textarea {
 }
 .BLOCKED {
   color: red;
+}
+.admin .upcomingSlots {
+  margin-top: 0.5rem;
 }
 .admin .slotCard {
   border: 0.05rem solid #C30010;

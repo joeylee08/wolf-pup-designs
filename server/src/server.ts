@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
+import pg from "pg";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import { prisma } from "./db.js";
@@ -8,13 +10,29 @@ import { Prisma } from "./generated/prisma/client.js";
 import { transporter } from "./mail.js";
 import { generateAppointmentSlots } from "./appointments.js";
 import type { Request, Response, NextFunction } from "express";
+import { rateLimit } from "express-rate-limit";
 
 const app = express();
-const PORT = 3001;
+const PORT = Number(process.env.PORT) || 3001;
+
+const PgSession = connectPgSimple(session);
+
+const sessionPool = new pg.Pool({
+	connectionString: process.env.DATABASE_URL
+});
+
+const sessionStore = new PgSession({
+	pool: sessionPool,
+	createTableIfMissing: true
+});
+
+const frontendOrigin = process.env.NODE_ENV === "production"
+	? "https://wolfpupdesigns.org"
+	: "http://localhost:5173";
 
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
+	origin: frontendOrigin,
+	credentials: true
 }));
 
 app.use(express.json());
@@ -23,9 +41,12 @@ if (!process.env.SESSION_SECRET) {
   throw new Error("SESSION_SECRET is not configured.")
 }
 
+app.set("trust proxy", 1);
+
 app.use(session({
     name: "wolfpup.sid",
-    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
+    secret: process.env.SESSION_SECRET!,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -38,6 +59,18 @@ app.use(session({
 
 const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
 	if (req.session.isAdmin !== true) return res.status(401).json({ error: "Unauthorized" });
+	next();
+};
+
+const requireTrustedOrigin = (req: Request, res: Response, next: NextFunction) => {
+	const origin = req.get("Origin");
+
+	if (origin !== frontendOrigin) {
+		return res.status(403).json({
+			error: "Request origin not allowed."
+		});
+	}
+
 	next();
 };
 
@@ -144,16 +177,17 @@ app.post("/api/appointments", async (req, res) => {
     })
   }
 
-  const isBlocked = await prisma.blockedSlot.findUnique({
-    where: { appointmentSlot: requestedSlot}
-  })
-  if (isBlocked) {
-    return res.status(409).json({
-      error: "This appointment slot is blocked."
-    });
-  }
-
   try {
+    const isBlocked = await prisma.blockedSlot.findUnique({
+      where: { appointmentSlot: requestedSlot}
+    })
+    
+    if (isBlocked) {
+      return res.status(409).json({
+        error: "This appointment slot is blocked."
+      });
+    }
+    
     const savedAppointment = await prisma.appointment.create({
       data: {
           name: name.trim(),
@@ -223,7 +257,17 @@ app.post("/api/appointments", async (req, res) => {
   }
 })
 
-app.post("/api/admin/login", async(req, res) => {
+const loginLimiter = rateLimit({
+	windowMs: 15 * 60 * 1000,
+	limit: 5,
+	standardHeaders: "draft-8",
+	legacyHeaders: false,
+	message: {
+		error: "Too many login attempts. Please try again in 15 minutes."
+	}
+});
+
+app.post("/api/admin/login", requireTrustedOrigin, loginLimiter, async(req, res) => {
   const { password } = req.body;
   if (typeof password !== "string" || !password) {
 	return res.status(400).json({
@@ -266,7 +310,7 @@ app.post("/api/admin/login", async(req, res) => {
   }
 })
 
-app.post("/api/admin/logout", (req, res) => {
+app.post("/api/admin/logout", requireAdmin, requireTrustedOrigin, (req, res) => {
   req.session.destroy(error => {
     if (error) {
       console.error("Admin logout failed:", error);
@@ -316,7 +360,7 @@ app.get("/api/admin/appointments", requireAdmin, async (req, res) => {
 	}
 });
 
-app.delete("/api/admin/appointments/:id", requireAdmin, async (req, res) => {
+app.delete("/api/admin/appointments/:id", requireAdmin, requireTrustedOrigin, async (req, res) => {
 	const id = Number(req.params.id);
 
 	if (!Number.isSafeInteger(id) || id <= 0) {
@@ -373,7 +417,7 @@ app.get("/api/admin/slots", requireAdmin, async (req, res) => {
 	}
 });
 
-app.post("/api/admin/slots/block", requireAdmin, async (req, res) => {
+app.post("/api/admin/slots/block", requireAdmin, requireTrustedOrigin, async (req, res) => {
 	const { appointmentSlot } = req.body;
 
 	if (typeof appointmentSlot !== "string") {
@@ -412,7 +456,7 @@ app.post("/api/admin/slots/block", requireAdmin, async (req, res) => {
 	}
 });
 
-app.delete("/api/admin/slots/block", requireAdmin, async (req, res) => {
+app.delete("/api/admin/slots/block", requireAdmin, requireTrustedOrigin, async (req, res) => {
 	const { appointmentSlot } = req.body;
 
 	if (typeof appointmentSlot !== "string") {
