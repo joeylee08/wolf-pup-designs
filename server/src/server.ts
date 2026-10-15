@@ -216,9 +216,9 @@ app.post("/api/appointments", async (req, res) => {
           to: email.trim(),
           subject: "Your Wolf Pup Designs Consultation Is Confirmed",
           text: [
-              `Hi ${name.trim()},`,
+              `Hi, ${name.trim()},`,
               "",
-              "Your complimentary 30-minute consultation with Wolf Pup Designs is confirmed.",
+              "Your complimentary 30-minute consultation has been scheduled.",
               "",
               `${slot.label} (Pacific Time)`,
               "",
@@ -226,7 +226,7 @@ app.post("/api/appointments", async (req, res) => {
               "",
               "If you need to cancel or reschedule, simply reply to this email.",
               "",
-              "Looking forward to speaking with you!",
+              "Looking forward to speaking with you.",
               "",
               "Wolf Pup Designs"
           ].join("\n")
