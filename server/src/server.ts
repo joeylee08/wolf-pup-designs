@@ -213,7 +213,7 @@ app.post("/api/appointments", async (req, res) => {
     }
     try {
       await sendZohoEmail({
-          to: "info@wolfpupdesigns.org",
+          to: email.trim(),
           subject: "Your Wolf Pup Designs Consultation Is Confirmed",
           text: [
               `Hi ${name.trim()},`,
