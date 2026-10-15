@@ -7,6 +7,7 @@ const Contact = () => {
 	const [snackOpen, setSnackOpen] = useState(true)
 
 	const showSnack = (message: string, color: string) => {
+		if (snackOpen) return
 		setSnackMessage({ message: message, color: color})
 		setSnackOpen(true);
 		setTimeout(() => setSnackOpen(false), 3000);
