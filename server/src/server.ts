@@ -237,7 +237,7 @@ app.post("/api/appointments", async (req, res) => {
             "<p>I'll follow up with the Zoom meeting details.</p>",
             "<p>If you need to cancel or reschedule, simply reply to this email.</p>",
             "<p>Looking forward to speaking with you.</p>",
-            '<p><img src="https://wolfpupdesigns.org/emailwolflogo.png" alt="Wolf Pup Designs" width="120" style="display:block;max-width:120px;height:auto;"></p>'
+            '<p><img src="https://wolfpupdesigns.org/emailwolflogo.png" alt="Wolf Pup Designs" width="240" style="display:block;max-width:120px;height:auto;"></p>'
           ].join("\n")
       })
     } catch (error) {
