@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 import { prisma } from "./db.js";
 import { Prisma } from "./generated/prisma/client.js";
-import { transporter } from "./mail.js";
+import { sendZohoEmail } from "./zohoMailer.js";
 import { generateAppointmentSlots } from "./appointments.js";
 import type { Request, Response, NextFunction } from "express";
 import { rateLimit } from "express-rate-limit";
@@ -121,10 +121,8 @@ app.post("/api/messages", async (req, res) => {
       },
     });
     try {
-        await transporter.sendMail({
-            from: '"Wolf Pup Designs" <info@wolfpupdesigns.org>',
+        await sendZohoEmail({
             to: "info@wolfpupdesigns.org",
-            replyTo: email.trim(),
             subject: `Inquiry from ${name.trim()}`,
             text: [
             `Name: ${name.trim()}`,
@@ -196,50 +194,46 @@ app.post("/api/appointments", async (req, res) => {
           appointmentSlot: requestedSlot
       }
     })
-    //nested try/catch to send appointment email alert to me
-    // try {
-		// await transporter.sendMail({
-		// 	from: '"Wolf Pup Designs" <info@wolfpupdesigns.org>',
-		// 	to: "info@wolfpupdesigns.org",
-		// 	replyTo: email.trim(),
-		// 	subject: `New Consultation Request from ${name.trim()}`,
-		// 	text: [
-		// 		`Name: ${name.trim()}`,
-		// 		`Email: ${email.trim()}`,
-		// 		`Appointment: ${slot.label} (Pacific Time)`,
-		// 		"",
-		// 		"Notes:",
-		// 		message?.trim() || "None provided"
-		// 	].join("\n")
-		// })
-    // } catch(error) {
-    //     console.error(`Email notification failed for appointment ${savedAppointment.id}:`,error)
-    // }
-    // try {
-    //   await transporter.sendMail({
-    //       from: '"Wolf Pup Designs" <info@wolfpupdesigns.org>',
-    //       to: email.trim(),
-    //       replyTo: "info@wolfpupdesigns.org",
-    //       subject: "Your Wolf Pup Designs Consultation Is Confirmed",
-    //       text: [
-    //           `Hi ${name.trim()},`,
-    //           "",
-    //           "Your complimentary 30-minute consultation with Wolf Pup Designs is confirmed.",
-    //           "",
-    //           `${slot.label} (Pacific Time)`,
-    //           "",
-    //           "I'll follow up with the Zoom meeting details.",
-    //           "",
-    //           "If you need to cancel or reschedule, simply reply to this email.",
-    //           "",
-    //           "Looking forward to speaking with you!",
-    //           "",
-    //           "Wolf Pup Designs"
-    //       ].join("\n")
-    //   })
-    // } catch (error) {
-    //     console.error(`Customer confirmation email failed for appointment ${savedAppointment.id}:`, error)
-    // }
+    // nested try/catch to send appointment email alert to me
+    try {
+		await sendZohoEmail({
+			to: "info@wolfpupdesigns.org",
+			subject: `New Consultation Request from ${name.trim()}`,
+			text: [
+				`Name: ${name.trim()}`,
+				`Email: ${email.trim()}`,
+				`Appointment: ${slot.label} (Pacific Time)`,
+				"",
+				"Notes:",
+				message?.trim() || "None provided"
+			].join("\n")
+		})
+    } catch(error) {
+        console.error(`Email notification failed for appointment ${savedAppointment.id}:`,error)
+    }
+    try {
+      await sendZohoEmail({
+          to: "info@wolfpupdesigns.org",
+          subject: "Your Wolf Pup Designs Consultation Is Confirmed",
+          text: [
+              `Hi ${name.trim()},`,
+              "",
+              "Your complimentary 30-minute consultation with Wolf Pup Designs is confirmed.",
+              "",
+              `${slot.label} (Pacific Time)`,
+              "",
+              "I'll follow up with the Zoom meeting details.",
+              "",
+              "If you need to cancel or reschedule, simply reply to this email.",
+              "",
+              "Looking forward to speaking with you!",
+              "",
+              "Wolf Pup Designs"
+          ].join("\n")
+      })
+    } catch (error) {
+        console.error(`Customer confirmation email failed for appointment ${savedAppointment.id}:`, error)
+    }
     return res.status(201).json({
         success: true,
         id: savedAppointment.id
