@@ -332,13 +332,13 @@ form > textarea {
   font-weight: 450;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .appointmentPlaceholder {
   margin-top: 1rem;
 }
 .cancelBtn {
   margin: 0 auto;
+  margin-top: auto;
 }
 .dayGroup {
 	margin-bottom: 1.5rem;
