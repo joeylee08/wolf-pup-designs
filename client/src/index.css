@@ -453,7 +453,7 @@ p.greenSnack {
     line-height: 20cqw;
   }
   .hero h3 {
-    font-size: 6.7cqw;
+    font-size: 6.5cqw;
     font-weight: 500;
   }
   .logo {
@@ -577,7 +577,7 @@ p.greenSnack {
     justify-content: space-between;
     list-style: none;
     padding: 0;
-    padding-left: 0.8rem;
+    padding-left: 0.7rem;
   }
   .linksList li:not(:last-child)::after {
 		content: none;
