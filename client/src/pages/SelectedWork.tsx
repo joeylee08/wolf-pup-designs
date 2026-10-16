@@ -1,4 +1,5 @@
 import macrothumb from "../assets/images/macrothumb.png";
+import palangmtthumb from "../assets/images/palangmtthumb.png"
 import underconstruction from "../assets/images/underconstruction.png";
 
 const SelectedWork = () => {
@@ -46,7 +47,7 @@ const SelectedWork = () => {
                     <br/>
                     <p>SOLUTION: A modern, easy-to-navigate website that clearly showcases the gym, its philosophy, and programs offered. Prospective students can contact the owner and schedule trial sessions, while current students can set up recurring tuition payments.</p>
                     <br/>
-                    <img className='projectThumb' src={underconstruction} alt='Palang MT Project Thumbnail'></img>
+                    <img className='projectThumb' src={palangmtthumb} alt='Palang MT Project Thumbnail'></img>
                     <br/>
                     <a className='pageBtn' href="https://wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">Palang Muay Thai</a>
                 </div>
