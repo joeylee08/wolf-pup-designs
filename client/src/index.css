@@ -450,6 +450,7 @@ p.greenSnack {
     width: 100%;
     font-size: 19cqw;
     font-weight: 450;
+    line-height: 20cqw;
   }
   .hero h3 {
     font-size: 6.7cqw;
@@ -553,7 +554,8 @@ p.greenSnack {
   .snackBar {
     position: fixed;
     width: 70%;
-    bottom: 2rem;
+    top: 2rem;
+    bottom: auto;
     left: 50%;
     transform: translateX(-50%);
     container-type: inline-size;
