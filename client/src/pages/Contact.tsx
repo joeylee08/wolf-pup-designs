@@ -313,7 +313,7 @@ const Contact = () => {
 						>
 							{messageStatus === "sending"
 								? "SENDING..."
-								: "SEND REQUEST"}
+								: "SEND MESSAGE"}
 						</button>
 					</form>
 				</div>
