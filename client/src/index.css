@@ -433,13 +433,13 @@ p.greenSnack {
     width: 100%;
     min-width: 0;
     container-type: inline-size;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     margin-top: 1rem;
   }
   .hero {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     container-type: inline-size;
     justify-content: center;
@@ -577,7 +577,7 @@ p.greenSnack {
     justify-content: space-between;
     list-style: none;
     padding: 0;
-    padding-left: 0.85rem;
+    padding-left: 0.8rem;
   }
   .linksList li:not(:last-child)::after {
 		content: none;
