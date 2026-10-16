@@ -6,7 +6,7 @@ type SnackBarProps = {
 const SnackBar = ({ message, color}: SnackBarProps) => {
     return (
         <div className={`snackBar ${color || ''}`} role='status'>
-            {/* <p className={color || ''}>{message}</p> */}
+            <p className={color || ''}>{message}</p>
         </div>
     )
 }
