@@ -4,7 +4,7 @@ import SnackBar from "../components/SnackBar";
 
 const Contact = () => {
 	const [snackMessage, setSnackMessage] = useState({message: '', color: ''})
-	const [snackOpen, setSnackOpen] = useState(false)
+	const [snackOpen, setSnackOpen] = useState(true)
 
 	const showSnack = (message: string, color: string) => {
 		if (snackOpen) return
@@ -107,7 +107,7 @@ const Contact = () => {
 					showSnack("Please select another time.", "redSnack")
 					throw new Error("Please select another time.");
 				}
-				if (!res.ok) throw new Error("Request failed to send. Please try again.");
+				if (!res.ok) throw new Error("Request failed to send.\nPlease try again.");
 				//use snackbar alert
 				showSnack("Your request was sent successfully!", "greenSnack");
 				fetchAppointments();
@@ -149,7 +149,7 @@ const Contact = () => {
 			})
 			.catch((error) => {
 				console.error("Message submission failed:", error);
-				showSnack("Message failed to send. Please try again.", "redSnack");
+				showSnack("Message failed to send.\nPlease try again.", "redSnack");
 			})
 			.finally(() => setMessageStatus("idle"));
 	};

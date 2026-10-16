@@ -55,7 +55,7 @@ const About = () => {
 					src={hobbyicons}
 					alt="Icons of My Hobbies"
 				></img>
-				<div className="aboutThumb">04 / THE STORY BEHIND THE WOLF</div>
+				<div className="aboutThumb">04 / BEHIND THE WOLF</div>
 				<br />
 				<div className="aboutText">
 					<p>

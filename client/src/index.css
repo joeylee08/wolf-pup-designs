@@ -37,6 +37,9 @@ body {
   min-width: 64rem;
   max-width: 64rem;
 }
+.mobileNav {
+  display: none;
+}
 .linksList {
   display: flex;
   flex-direction: row;
@@ -399,6 +402,7 @@ form > textarea {
   align-items: center;
   justify-content: center;
   padding: 0 1.5rem;
+  white-space: pre-line;
 }
 .snackBar > p {
   font-size: 1.2rem;
@@ -415,4 +419,164 @@ div.greenSnack {
 }
 p.greenSnack {
   color: green;
+}
+
+@media (max-width: 500px) {
+	#app {
+    max-width: 100vw;
+    min-width: 90vw;
+    padding: 0;
+    margin: 1.5rem auto;
+  }
+  .mainPage {
+    width: 100%;
+    min-width: 0;
+    container-type: inline-size;
+    padding: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto;
+    container-type: inline-size;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 19cqw;
+    font-weight: 450;
+  }
+  .hero h3 {
+    font-size: 6.7cqw;
+    font-weight: 500;
+  }
+  .logo {
+    width: 70%;
+    height: auto;
+  }
+  h2.sectionHeading {
+    width: 80%;
+    text-align: center;
+    font-size: 7cqw;
+  }
+  .home .child2 {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .home .child3 {
+    width: 75%;
+    text-align: center;
+  }
+  .home .pageBtn {
+    align-self: center;
+  }
+  .whatIBuild .child1 {
+    text-align: left;
+    width: 80%;
+  }
+  .whatIBuild .child2 {
+    width: 90%;
+  }
+  .techThumb {
+    width: 100%;
+    min-width: 0;
+    container-type: inline-size;
+  }
+  .whatIBuild .child3 {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .techThumb > p {
+    font-size: 10cqw;
+  }
+  .whatIBuild .child4 {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .whatIBuild .child4a {
+    width: 100%;
+  }
+  .whatIBuild .child4b {
+    display: none;
+  }
+  .selectedWork .child {
+    width: 90%;
+  }
+  .selectedWork .pageBtn {
+    align-self: center;
+  }
+  .aboutMe .child {
+    width: 90%;
+  }
+  .aboutThumb {
+    width: 95%;
+  }
+  .aboutText {
+    width: 85%;
+  }
+  .hobbyIcons {
+    width: 92.5%;
+    padding-right: 0.5rem;
+  }
+  .contact .child {
+    width: 90%;
+  }
+  .contact input {
+    width: 100%;
+  }
+  .contact select {
+    width: 100%;
+  }
+  .contact form {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .contact textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+  .contact .pageBtn {
+    align-self: center;
+  }
+  .snackBar {
+    position: fixed;
+    width: 70%;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    container-type: inline-size;
+  }
+  .snackBar > p {
+    font-size: 6cqw;
+  }
+  .navbar {
+    display: none;
+  }
+  .mobileNav {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .linksList {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    padding-left: 0.8rem;
+  }
+  .linksList li:not(:last-child)::after {
+		content: none;
+	}
+  
 }
