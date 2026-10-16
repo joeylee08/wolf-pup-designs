@@ -42,7 +42,7 @@ const SelectedWork = () => {
                 <div className='sectionModule'>
                     <p className='moduleHeading'>02 / PALANG MUAY THAI</p>
                     <br/>
-                    <p>PROBLEM: Oregon-based martial arts and Muay Thai gym needed a professional online presence to attract prospective students, communicate its training philosophy, and streamline scheduling and administrative tasks.</p>
+                    <p>PROBLEM: A local martial arts and Muay Thai gym needed a professional online presence to attract prospective students, communicate its training philosophy, and streamline scheduling and administrative tasks.</p>
                     <br/>
                     <p>SOLUTION: A modern, easy-to-navigate website that clearly showcases the gym, its philosophy, and programs offered. Prospective students can contact the owner and schedule trial sessions, while current students can set up recurring tuition payments.</p>
                     <br/>
