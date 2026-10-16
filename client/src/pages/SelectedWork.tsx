@@ -1,6 +1,5 @@
 import macrothumb from "../assets/images/macrothumb.png";
 import palangmtthumb from "../assets/images/palangmtthumb.png"
-import underconstruction from "../assets/images/underconstruction.png";
 
 const SelectedWork = () => {
 	return (
