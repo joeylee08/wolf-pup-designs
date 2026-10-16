@@ -444,9 +444,10 @@ p.greenSnack {
     container-type: inline-size;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: left;
   }
   .hero h1 {
+    width: 100%;
     font-size: 19cqw;
     font-weight: 450;
   }
@@ -455,7 +456,7 @@ p.greenSnack {
     font-weight: 500;
   }
   .logo {
-    width: 70%;
+    width: 75%;
     height: auto;
   }
   h2.sectionHeading {
@@ -579,5 +580,8 @@ p.greenSnack {
   .linksList li:not(:last-child)::after {
 		content: none;
 	}
-  
+  .logoSmall {
+    width: 60%;
+    height: auto;
+  }
 }
