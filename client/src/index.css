@@ -439,7 +439,7 @@ p.greenSnack {
   .hero {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 85%;
     margin: 0 auto;
     container-type: inline-size;
     justify-content: center;
