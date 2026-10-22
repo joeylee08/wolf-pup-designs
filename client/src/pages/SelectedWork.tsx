@@ -48,7 +48,7 @@ const SelectedWork = () => {
                     <br/>
                     <img className='projectThumb' src={palangmtthumb} alt='Palang MT Project Thumbnail'></img>
                     <br/>
-                    <a className='pageBtn' href="https://wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">Palang Muay Thai</a>
+                    <a className='pageBtn' href="https://palangmuaythai.wolfpupdesigns.org" target="_blank" rel="noopener noreferrer">Palang Muay Thai</a>
                 </div>
             </div>
 			{/* <div className="child child3">
