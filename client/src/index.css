@@ -642,14 +642,15 @@ p.greenSnack {
     width: 85%;
     margin: 0 auto;
 		border-radius: 0.5rem;
-		padding-top: 0.1rem;
-		padding-bottom: 0.1rem;
+		padding-top: 1.8rem;
   }
   .linksList {
     display: flex;
     width: 100%;
     justify-content: space-between;
     list-style: none;
+		margin-top: 0;
+		margin-bottom: 0;
   }
   .linksList li:not(:last-child)::after {
 		content: none;
