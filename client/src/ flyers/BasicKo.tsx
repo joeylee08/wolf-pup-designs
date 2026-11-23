@@ -3,7 +3,7 @@ import wolfpuplogo from "../assets/images/wolfpuplogo.png";
 
 const FlyerKo = () => {
   return (
-    <div className="mainPage flyer">
+    <div className="mainPage flyer" id='koreanFlyer'>
       <h2 className="flyerLink">wolfpupdesigns.org</h2>
 
       <div className="child child1">
