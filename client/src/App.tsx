@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar";
 import Admin from "./pages/Admin";
 import ScrollToTop from "./ScrollToTop";
 // import Flyer from "./ flyers/Basic";
-// import FlyerKo from "./ flyers/BasicKo";
+import FlyerKo from "./ flyers/BasicKo";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 	const routes = [
 		<>
 		{/* // 	<Route path="/flyer" element={<Flyer />} /> */}
-			{/* <Route path="/flyerko" element={<FlyerKo />} /> */}
+			<Route path="/flyerko" element={<FlyerKo />} />
 			<Route path="/" element={<Home />} />
 			<Route path="/whatibuild" element={<WhatIBuild />} />
 			<Route path="/selectedwork" element={<SelectedWork />} />

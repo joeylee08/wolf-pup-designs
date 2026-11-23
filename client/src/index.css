@@ -469,6 +469,9 @@ p.greenSnack {
 	margin-top: -1.2rem;
 	margin-bottom: 0rem;
 }
+.mainPage.flyer {
+	margin: 0;
+}
 
 @media (max-width: 500px) {
 	#app {
