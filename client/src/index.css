@@ -437,6 +437,9 @@ p.greenSnack {
 	width: 90%;
 	text-align: end;
 }
+.flyerText {
+	margin-left: 1rem;
+}
 .flyer .child1 {
 	width: 85%;
 	margin: 0 auto;

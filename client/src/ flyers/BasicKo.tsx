@@ -8,7 +8,7 @@ const FlyerKo = () => {
 
       <div className="child child1">
         <img src={wolfpuplogo} alt="WolfPupDesigns Logo" />
-        <div>
+        <div className='flyerText'>
           <h1>Wolf Pup Designs</h1>
           <h3>웹사이트 제작 및 가격 안내</h3>
         </div>

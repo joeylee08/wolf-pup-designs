@@ -6,7 +6,7 @@ const Flyer = () => {
 			<h2 className='flyerLink'>wolfpupdesigns.org</h2>
 			<div className='child child1'>
 				<img src={wolfpuplogo} alt="WolfPupDesigns Logo" />
-				<div>
+				<div className='flyerText'>
 					<h1>Wolf Pup Designs</h1>
 					<h3>Custom Web Application Pricing</h3>
 				</div>
