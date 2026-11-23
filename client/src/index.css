@@ -596,7 +596,7 @@ p.greenSnack {
     width: 95%;
   }
   .aboutText {
-    width: 92%;
+    width: 90%;
   }
   .hobbyIcons {
     width: 92.5%;
@@ -642,7 +642,7 @@ p.greenSnack {
     width: 100%;
     margin: 0 auto;
 		border-radius: 0.5rem;
-		border: 2px solid red;
+		padding-top: 0.1rem;
   }
   .linksList {
     display: flex;
@@ -650,7 +650,6 @@ p.greenSnack {
     justify-content: space-between;
     list-style: none;
     padding: 0;
-    /* padding-left: 0.5rem; */
   }
   .linksList li:not(:last-child)::after {
 		content: none;
