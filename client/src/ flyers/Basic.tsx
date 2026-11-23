@@ -17,7 +17,7 @@ const Flyer = () => {
 				<br/>
 				<p>Your content can include:</p>
 				<p>a. Client-provided headings, paragraphs, and other written content. Posted once.</p>
-				<p>b. Client-provided photo and images. Posted once.</p>
+				<p>b. Client-provided photos and images. Posted once.</p>
 				<p>c. YouTube embed links.</p>
 				<p>d. Google Map embed showing your business location.</p>
 				<p>e. Email and other links.</p>
@@ -32,7 +32,7 @@ const Flyer = () => {
 			<div className="child child4">
 				<h2 className='sectionHeading'>Optional Features For Basic+</h2>
 				<p>01 / Posting, Entry, Listing Management <span>+ $600</span></p>
-				<p>This is a custom object that the client can create, manage, and delete from within their a secure admin portal. This can be a type of listing, data entry, or any kind of historical record desired. This data can be kept for the clients use, or rendered publicly. Photos and files allowed.</p>
+				<p>This is a custom object that the client can create, manage, and delete from within a secure admin portal. This can be a type of listing, data entry, or any kind of historical record desired. This data can be kept for the clients use, or rendered publicly. Photos and files allowed.</p>
 				<br/>
 				<p>02 / Custom Photo Management Dashboard <span>+ $400</span></p>
 				<p>The client will have access to a secure admin dashboard that will allow them to upload photos from their current location via mobile or desktop. All uploaded photos may have a caption and can easily be deleted from inside the admin portal. Photos by default will show up in a single gallery on the client's website.</p>

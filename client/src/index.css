@@ -427,9 +427,12 @@ p.greenSnack {
 .flyer h1 {
 	font-size: 4rem;
 }
+.flyer p {
+	font-size: 1.2rem;
+}
 .flyerLink {
 	font-size: 1.4rem;
-	font-weight: 300;
+	font-weight: 400;
 	margin: 0rem auto;
 	width: 90%;
 	text-align: end;
@@ -444,7 +447,7 @@ p.greenSnack {
 }
 .flyer span {
 	color: #C30010;
-	font-weight: 400;
+	font-weight: 450;
 }
 .flyer .child3,
 .flyer .child2 {
@@ -458,17 +461,13 @@ p.greenSnack {
 	padding: 1.5rem 2rem;
 	border-radius: 0.8rem;
 }
-.flyer .child3.complete p {
-	font-size: 1.2rem;
-	font-weight: 550;
-}
 .flyer .child p {
 	line-height: 1.5;
 }
 .flyer .child4 {
 	padding: 1.5rem 1.2rem;
 	margin-top: -1.2rem;
-	margin-bottom: 2.2rem;
+	margin-bottom: 0rem;
 }
 
 @media (max-width: 500px) {

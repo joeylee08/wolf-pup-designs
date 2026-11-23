@@ -23,7 +23,7 @@ function App() {
 	const routes = [
 		<>
 		{/* // 	<Route path="/flyer" element={<Flyer />} /> */}
-		{/* // 	<Route path="/flyerko" element={<FlyerKo />} /> */}
+			{/* <Route path="/flyerko" element={<FlyerKo />} /> */}
 			<Route path="/" element={<Home />} />
 			<Route path="/whatibuild" element={<WhatIBuild />} />
 			<Route path="/selectedwork" element={<SelectedWork />} />
