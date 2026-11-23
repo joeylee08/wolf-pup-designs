@@ -643,6 +643,7 @@ p.greenSnack {
     margin: 0 auto;
 		border-radius: 0.5rem;
 		padding-top: 1.8rem;
+		padding-bottom: 0.2rem;
   }
   .linksList {
     display: flex;
