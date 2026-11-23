@@ -30,7 +30,7 @@ body {
   height: 85%;
   margin: 3rem auto;
   background-color: white;
-  border: 0.06rem solid #4A4A4A;
+  /* border: 0.06rem solid #4A4A4A; */
   border-radius: 0.5rem;
   padding-top: 0.8rem;
   padding-bottom: 2rem;
@@ -420,6 +420,55 @@ div.greenSnack {
 }
 p.greenSnack {
   color: green;
+}
+.flyer img  {
+	width: 25%;
+}
+.flyer h1 {
+	font-size: 4rem;
+}
+.flyerLink {
+	font-size: 1.4rem;
+	font-weight: 300;
+	margin: 0rem auto;
+	width: 90%;
+	text-align: end;
+}
+.flyer .child1 {
+	width: 85%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0.2rem auto 1.5rem auto;
+}
+.flyer span {
+	color: #C30010;
+	font-weight: 400;
+}
+.flyer .child3,
+.flyer .child2 {
+	margin-bottom: 2rem;
+}
+.flyer .child .sectionHeading {
+	width: 100%;
+}
+.flyer .child3 {
+	border: 0.05rem solid #bbbbbb;
+	padding: 1.5rem 2rem;
+	border-radius: 0.8rem;
+}
+.flyer .child3.complete p {
+	font-size: 1.2rem;
+	font-weight: 550;
+}
+.flyer .child p {
+	line-height: 1.5;
+}
+.flyer .child4 {
+	padding: 1.5rem 1.2rem;
+	margin-top: -1.2rem;
+	margin-bottom: 2.2rem;
 }
 
 @media (max-width: 500px) {
