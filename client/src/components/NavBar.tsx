@@ -15,11 +15,11 @@ const NavBar = () => {
 		</nav>
 		<nav className="mobileNav">
 			<ul className='linksList'>
-				<li><NavLink to="/" className={({ isActive }) => isActive ? "selected" : ""}><House size={38}/></NavLink></li>
-				<li><NavLink to="/whatibuild" className={({ isActive }) => isActive ? "selected" : ""}><Hammer size={38}/></NavLink></li>
-				<li><NavLink to="/selectedwork" className={({ isActive }) => isActive ? "selected" : ""}><Computer size={38}/></NavLink></li>
-				<li><NavLink to="/aboutme" className={({ isActive }) => isActive ? "selected" : ""}><PawPrint size={38}/></NavLink></li>
-				<li><NavLink to="/contact" className={({ isActive }) => isActive ? "selected" : ""}><Phone size={38}/></NavLink></li>
+				<li><NavLink to="/" className={({ isActive }) => isActive ? "selected" : ""}><House size={32}/></NavLink></li>
+				<li><NavLink to="/whatibuild" className={({ isActive }) => isActive ? "selected" : ""}><Hammer size={32}/></NavLink></li>
+				<li><NavLink to="/selectedwork" className={({ isActive }) => isActive ? "selected" : ""}><Computer size={32}/></NavLink></li>
+				<li><NavLink to="/aboutme" className={({ isActive }) => isActive ? "selected" : ""}><PawPrint size={32}/></NavLink></li>
+				<li><NavLink to="/contact" className={({ isActive }) => isActive ? "selected" : ""}><Phone size={32}/></NavLink></li>
 			</ul>
 		</nav>
 		</>

@@ -596,7 +596,7 @@ p.greenSnack {
     width: 95%;
   }
   .aboutText {
-    width: 85%;
+    width: 92%;
   }
   .hobbyIcons {
     width: 92.5%;
@@ -636,14 +636,13 @@ p.greenSnack {
   }
   .navbar {
     display: none;
-  }
-	.mobileNav {
-		border: 2px solid red;
-	}
+  } 
   .mobileNav {
     display: block;
     width: 100%;
     margin: 0 auto;
+		border-radius: 0.5rem;
+		border: 2px solid red;
   }
   .linksList {
     display: flex;
