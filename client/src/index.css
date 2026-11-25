@@ -475,22 +475,34 @@ p.greenSnack {
 .mainPage.flyer {
 	margin: 0;
 }
+#koreanFlyer .flyerText h1 {
+	font-weight: 400;
+}
+#koreanFlyer h2.flyerLink {
+	font-size: 1.5rem;
+	font-weight: 300;
+}
 #koreanFlyer h2 {
-	font-family: "Gowun Dodum", sans-serif;
-	font-weight: 600;
+	font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+	font-weight: 350;
+	font-size: 2rem;
 }
 #koreanFlyer h2 span {
-	font-size: 2.1rem;
+	font-size: 2.1rem; 
+	font-weight: 400;
 }
 #koreanFlyer h3 {
-	font-family: "Gowun Dodum", sans-serif;
-	font-size: 2rem;
-	font-weight: 400;
+	font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
 	line-height: auto;
 	margin: 0;
+	font-weight: 400;
 }
 #koreanFlyer p {
-	font-family: "Gowun Dodum", sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
+	font-weight: 300;
 }
 
 @media (max-width: 500px) {
